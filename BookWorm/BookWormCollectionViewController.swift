@@ -68,6 +68,9 @@ class BookWormCollectionViewController: UICollectionViewController {
         
         let movie = movieList.movie[indexPath.row]
         
+        cell.layer.cornerRadius = 20
+        cell.backgroundColor = .randomColor()
+        
         cell.titleLabel.text = movie.title
         cell.titleLabel.textColor = .white
         cell.posterImageView.image = UIImage(named: movie.title)

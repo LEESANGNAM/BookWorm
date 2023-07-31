@@ -20,6 +20,7 @@
 		D698B5E92A77D87800ED3D28 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5E82A77D87800ED3D28 /* Movie.swift */; };
 		D698B5EB2A77DD5700ED3D28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5EA2A77DD5700ED3D28 /* SearchViewController.swift */; };
 		D698B5ED2A77DD6400ED3D28 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5EC2A77DD6400ED3D28 /* DetailViewController.swift */; };
+		D698B5EF2A7809B000ED3D28 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5EE2A7809B000ED3D28 /* Extension+UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		D698B5E82A77D87800ED3D28 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D698B5EA2A77DD5700ED3D28 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D698B5EC2A77DD6400ED3D28 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D698B5EE2A7809B000ED3D28 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				D698B5E22A77D3E200ED3D28 /* BookWormCollectionViewCell.swift */,
 				D698B5E32A77D3E200ED3D28 /* BookWormCollectionViewCell.xib */,
 				D698B5E02A77D38B00ED3D28 /* BookWormCollectionViewController.swift */,
+				D698B5EE2A7809B000ED3D28 /* Extension+UIColor.swift */,
 				D698B5E62A77D85F00ED3D28 /* MovieInfo.swift */,
 				D698B5E82A77D87800ED3D28 /* Movie.swift */,
 				D698B5D52A77D2F400ED3D28 /* Assets.xcassets */,
@@ -160,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D698B5EF2A7809B000ED3D28 /* Extension+UIColor.swift in Sources */,
 				D698B5ED2A77DD6400ED3D28 /* DetailViewController.swift in Sources */,
 				D698B5E92A77D87800ED3D28 /* Movie.swift in Sources */,
 				D698B5E12A77D38B00ED3D28 /* BookWormCollectionViewController.swift in Sources */,
