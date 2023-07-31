@@ -8,6 +8,9 @@
 import UIKit
 
 class BookWormCollectionViewController: UICollectionViewController {
+    
+    let movieList = MovieInfo()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +45,23 @@ class BookWormCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
-        return 9
+        return movieList.movie.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookWormCollectionViewCell", for: indexPath) as! BookWormCollectionViewCell
         cell.backgroundColor = .blue
-        cell.posterImageView.backgroundColor = .red
-    
+        
+        let movie = movieList.movie[indexPath.row]
+        
+        cell.titleLabel.text = movie.title
+        cell.titleLabel.textColor = .white
+        cell.posterImageView.image = UIImage(named: movie.title)
+        cell.rateLabel.text = "\(movie.rate)"
+        cell.rateLabel.textColor = .white
         return cell
     }
 
+    
 
 }

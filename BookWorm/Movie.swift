@@ -13,5 +13,5 @@ struct Movie {
     var releaseDate: String
     var runtime: Int
     var overview: String
-    var rate: Int
+    var rate: Double
 }

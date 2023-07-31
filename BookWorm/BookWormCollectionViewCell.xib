@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pp-Wu-gOL">
-                        <rect key="frame" x="0.0" y="0.0" width="236" height="46.666666666666664"/>
+                        <rect key="frame" x="10" y="0.0" width="226" height="46.666666666666664"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -29,7 +29,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-1b-bMw">
-                        <rect key="frame" x="152.33333333333334" y="193" width="63.666666666666657" height="21"/>
+                        <rect key="frame" x="142.33333333333334" y="193" width="73.666666666666657" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,10 +42,10 @@
                 <constraint firstItem="9ml-g6-x3f" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.8" id="JRT-73-OJj"/>
                 <constraint firstAttribute="trailing" secondItem="1fN-1b-bMw" secondAttribute="trailing" constant="20" id="Px2-6C-en0"/>
                 <constraint firstItem="9ml-g6-x3f" firstAttribute="top" secondItem="2pp-Wu-gOL" secondAttribute="bottom" id="SWN-hB-zSx"/>
-                <constraint firstItem="1fN-1b-bMw" firstAttribute="leading" secondItem="9ml-g6-x3f" secondAttribute="trailing" constant="30" id="W58-8L-HNf"/>
+                <constraint firstItem="1fN-1b-bMw" firstAttribute="leading" secondItem="9ml-g6-x3f" secondAttribute="trailing" constant="20" id="W58-8L-HNf"/>
                 <constraint firstAttribute="bottom" secondItem="9ml-g6-x3f" secondAttribute="bottom" id="WH1-f4-rvg"/>
                 <constraint firstAttribute="bottom" secondItem="1fN-1b-bMw" secondAttribute="bottom" constant="20" id="WnF-WQ-1nq"/>
-                <constraint firstItem="2pp-Wu-gOL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="h3g-3O-d9N"/>
+                <constraint firstItem="2pp-Wu-gOL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="h3g-3O-d9N"/>
                 <constraint firstItem="9ml-g6-x3f" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="qHp-jU-gaX"/>
                 <constraint firstAttribute="trailing" secondItem="2pp-Wu-gOL" secondAttribute="trailing" id="rfh-Au-LEa"/>
             </constraints>
