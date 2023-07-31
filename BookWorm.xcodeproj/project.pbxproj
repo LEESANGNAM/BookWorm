@@ -16,6 +16,8 @@
 		D698B5E12A77D38B00ED3D28 /* BookWormCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5E02A77D38B00ED3D28 /* BookWormCollectionViewController.swift */; };
 		D698B5E42A77D3E200ED3D28 /* BookWormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5E22A77D3E200ED3D28 /* BookWormCollectionViewCell.swift */; };
 		D698B5E52A77D3E200ED3D28 /* BookWormCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D698B5E32A77D3E200ED3D28 /* BookWormCollectionViewCell.xib */; };
+		D698B5E72A77D85F00ED3D28 /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5E62A77D85F00ED3D28 /* MovieInfo.swift */; };
+		D698B5E92A77D87800ED3D28 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5E82A77D87800ED3D28 /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		D698B5E02A77D38B00ED3D28 /* BookWormCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookWormCollectionViewController.swift; sourceTree = "<group>"; };
 		D698B5E22A77D3E200ED3D28 /* BookWormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookWormCollectionViewCell.swift; sourceTree = "<group>"; };
 		D698B5E32A77D3E200ED3D28 /* BookWormCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookWormCollectionViewCell.xib; sourceTree = "<group>"; };
+		D698B5E62A77D85F00ED3D28 /* MovieInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieInfo.swift; path = ../../../../../Downloads/MovieInfo.swift; sourceTree = "<group>"; };
+		D698B5E82A77D87800ED3D28 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				D698B5E22A77D3E200ED3D28 /* BookWormCollectionViewCell.swift */,
 				D698B5E32A77D3E200ED3D28 /* BookWormCollectionViewCell.xib */,
 				D698B5E02A77D38B00ED3D28 /* BookWormCollectionViewController.swift */,
+				D698B5E62A77D85F00ED3D28 /* MovieInfo.swift */,
+				D698B5E82A77D87800ED3D28 /* Movie.swift */,
 				D698B5D52A77D2F400ED3D28 /* Assets.xcassets */,
 				D698B5D72A77D2F400ED3D28 /* LaunchScreen.storyboard */,
 				D698B5DA2A77D2F400ED3D28 /* Info.plist */,
@@ -148,10 +154,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D698B5E92A77D87800ED3D28 /* Movie.swift in Sources */,
 				D698B5E12A77D38B00ED3D28 /* BookWormCollectionViewController.swift in Sources */,
 				D698B5D12A77D2F200ED3D28 /* ViewController.swift in Sources */,
 				D698B5CD2A77D2F200ED3D28 /* AppDelegate.swift in Sources */,
 				D698B5E42A77D3E200ED3D28 /* BookWormCollectionViewCell.swift in Sources */,
+				D698B5E72A77D85F00ED3D28 /* MovieInfo.swift in Sources */,
 				D698B5CF2A77D2F200ED3D28 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
