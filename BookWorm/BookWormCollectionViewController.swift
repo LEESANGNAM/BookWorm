@@ -75,6 +75,18 @@ class BookWormCollectionViewController: UICollectionViewController {
         cell.rateLabel.textColor = .white
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        
+        
+        vc.modalTransitionStyle = .crossDissolve
+        navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
 
     
 

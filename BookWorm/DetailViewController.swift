@@ -11,7 +11,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "상세화면"
+        navigationItem.leftBarButtonItem?.title = "여긴가"
         // Do any additional setup after loading the view.
     }
     
