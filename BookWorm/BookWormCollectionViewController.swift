@@ -16,9 +16,23 @@ class BookWormCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         let nib = UINib(nibName: "BookWormCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWormCollectionViewCell")
-        
+        self.title = "고래밥님의 책장"
         setCollectionViewLayout()
       
+    }
+    
+    @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let vc = sb.instantiateViewController(identifier: "SearchViewController") as? SearchViewController else { return }
+        
+        let nav = UINavigationController(rootViewController: vc)
+        
+        nav.modalPresentationStyle = .fullScreen
+        
+        present(nav, animated: true)
+        
     }
     
     func setCollectionViewLayout(){
