@@ -81,6 +81,7 @@ class BookWormCollectionViewController: UICollectionViewController {
         
         guard let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         
+        vc.movie = movieList.movie[indexPath.row]
         
         vc.modalTransitionStyle = .crossDissolve
         navigationController?.pushViewController(vc, animated: true)

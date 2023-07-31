@@ -8,23 +8,38 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    var movie: Movie?
 
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var rateLabel: UILabel!
+    
+    @IBOutlet weak var overViewLabel: UILabel!
+    
+    @IBOutlet weak var posterImageView: UIImageView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "상세화면"
-        navigationItem.leftBarButtonItem?.title = "여긴가"
+        setUpUI(movie: movie!)
+        self.navigationController?.navigationBar.topItem?.title = ""
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUpUI(movie: Movie){
+        self.title = movie.title
+        dateLabel.text = movie.releaseDate
+        timeLabel.text = "\(movie.runtime)분"
+        rateLabel.text = "\(movie.rate)점"
+        overViewLabel.text = movie.overview
+        posterImageView.image = UIImage(named: movie.title)
     }
-    */
+    
+    
 
 }
