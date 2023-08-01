@@ -73,12 +73,21 @@ class BookWormCollectionViewController: UICollectionViewController {
         
         cell.configreCollectionCell(movie: movie)
         
+    
+        cell.likeButton.tag = indexPath.item
+        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    @objc func likeButtonTapped(_ sender: UIButton){
+        print("\(sender.tag)")
+        movieList.movie[sender.tag].like.toggle()
         
-        movieList.movie[indexPath.row].like.toggle()
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         

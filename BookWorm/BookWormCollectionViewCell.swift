@@ -16,7 +16,7 @@ class BookWormCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rateLabel: UILabel!
     
     @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var likeIamgeView: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
     
     
     func configreCollectionCell(movie: Movie){
@@ -29,12 +29,13 @@ class BookWormCollectionViewCell: UICollectionViewCell {
         posterImageView.image = UIImage(named: movie.title)
         rateLabel.text = "\(movie.rate)"
         rateLabel.textColor = .white
-        likeIamgeView.tintColor = .white
+        likeButton.tintColor = .white
+        likeButton.setTitle("", for: .normal)
 
         if movie.like {
-            likeIamgeView.image = UIImage(systemName: "hand.thumbsup.fill")
+            likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         }else{
-            likeIamgeView.image = UIImage(systemName: "hand.thumbsup")
+            likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
         }
 
     }
