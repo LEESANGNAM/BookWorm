@@ -9,12 +9,16 @@ import UIKit
 
 class BookWormCollectionViewController: UICollectionViewController {
     
-    let movieList = MovieInfo()
+    var movieList = MovieInfo(){
+        didSet{
+            collectionView.reloadData()
+        }
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "BookWormCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWormCollectionViewCell")
         self.title = "고래밥님의 책장"
         setCollectionViewLayout()
@@ -23,9 +27,9 @@ class BookWormCollectionViewController: UICollectionViewController {
     
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
         
-        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
         
-        guard let vc = sb.instantiateViewController(identifier: "SearchViewController") as? SearchViewController else { return }
+        guard let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as? SearchViewController else { return }
         
         let nav = UINavigationController(rootViewController: vc)
         
@@ -63,26 +67,20 @@ class BookWormCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookWormCollectionViewCell", for: indexPath) as! BookWormCollectionViewCell
-        cell.backgroundColor = .blue
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookWormCollectionViewCell.identifier, for: indexPath) as! BookWormCollectionViewCell
         
         let movie = movieList.movie[indexPath.row]
         
-        cell.layer.cornerRadius = 20
-        cell.backgroundColor = .randomColor()
+        cell.configreCollectionCell(movie: movie)
         
-        cell.titleLabel.text = movie.title
-        cell.titleLabel.textColor = .white
-        cell.posterImageView.image = UIImage(named: movie.title)
-        cell.rateLabel.text = "\(movie.rate)"
-        cell.rateLabel.textColor = .white
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
         
-        guard let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        movieList.movie[indexPath.row].like.toggle()
+        
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         
         vc.movie = movieList.movie[indexPath.row]
         

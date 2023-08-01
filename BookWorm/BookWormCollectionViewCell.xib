@@ -29,18 +29,27 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-1b-bMw">
-                        <rect key="frame" x="142.33333333333334" y="193" width="73.666666666666657" height="21"/>
+                        <rect key="frame" x="142.33333333333334" y="193.66666666666666" width="73.666666666666657" height="20.333333333333343"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H1k-2H-8st">
+                        <rect key="frame" x="142.33333333333334" y="76.666666666666671" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="bKu-pb-Zah"/>
+                            <constraint firstAttribute="height" constant="40" id="pvi-ji-MmP"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="2pp-Wu-gOL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5eL-L2-njI"/>
                 <constraint firstItem="9ml-g6-x3f" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.8" id="JRT-73-OJj"/>
+                <constraint firstItem="H1k-2H-8st" firstAttribute="leading" secondItem="1fN-1b-bMw" secondAttribute="leading" id="Mb4-KQ-30U"/>
                 <constraint firstAttribute="trailing" secondItem="1fN-1b-bMw" secondAttribute="trailing" constant="20" id="Px2-6C-en0"/>
+                <constraint firstItem="H1k-2H-8st" firstAttribute="top" secondItem="2pp-Wu-gOL" secondAttribute="bottom" constant="30" id="ROO-CG-cyL"/>
                 <constraint firstItem="9ml-g6-x3f" firstAttribute="top" secondItem="2pp-Wu-gOL" secondAttribute="bottom" id="SWN-hB-zSx"/>
                 <constraint firstItem="1fN-1b-bMw" firstAttribute="leading" secondItem="9ml-g6-x3f" secondAttribute="trailing" constant="20" id="W58-8L-HNf"/>
                 <constraint firstAttribute="bottom" secondItem="9ml-g6-x3f" secondAttribute="bottom" id="WH1-f4-rvg"/>
@@ -51,6 +60,7 @@
             </constraints>
             <size key="customSize" width="236" height="234"/>
             <connections>
+                <outlet property="likeIamgeView" destination="H1k-2H-8st" id="nKU-Ln-Y1o"/>
                 <outlet property="posterImageView" destination="9ml-g6-x3f" id="2gO-ew-LRf"/>
                 <outlet property="rateLabel" destination="1fN-1b-bMw" id="awb-OJ-Io6"/>
                 <outlet property="titleLabel" destination="2pp-Wu-gOL" id="wIL-Sq-JPP"/>
