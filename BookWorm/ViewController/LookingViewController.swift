@@ -9,7 +9,7 @@ import UIKit
 
 class LookingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource {
     
-    
+    var movieList = MovieInfo()
 
     @IBOutlet weak var lookingCollectionView: UICollectionView!
     
@@ -26,6 +26,9 @@ class LookingViewController: UIViewController, UICollectionViewDelegate, UIColle
         let nib = UINib(nibName: "LookingTableViewCell", bundle: nil)
         lookingTableView.register(nib, forCellReuseIdentifier: "LookingTableViewCell")
         lookingTableView.rowHeight = 150
+        
+        let nib1 = UINib(nibName: "LookingCollectionViewCell", bundle: nil)
+        lookingCollectionView.register(nib1, forCellWithReuseIdentifier: "LookingCollectionViewCell")
         configureCollectionViewLayout()
         // Do any additional setup after loading the view.
     }
@@ -34,12 +37,12 @@ class LookingViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return movieList.movie.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "testCollectionCell", for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LookingCollectionViewCell", for: indexPath) as! LookingCollectionViewCell
+        cell.posterImageView.image = UIImage(named: movieList.movie[indexPath.row].title)
         return cell
     }
     
@@ -58,17 +61,19 @@ class LookingViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return movieList.movie.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LookingTableViewCell") as! LookingTableViewCell
-        cell.mainTitleLabel.text = "테스트 제목제목"
-        cell.dateLabel.text = "1234-56-78"
-        cell.timeRateLabel.text = "123분 평점 0.00분"
-        cell.backgroundColor = .brown
-        cell.posterImageView.backgroundColor = .blue
+        
+        let movieInfo = movieList.movie[indexPath.row]
+        
+        cell.mainTitleLabel.text = movieInfo.title
+        cell.dateLabel.text = movieInfo.releaseDate
+        cell.timeRateLabel.text = "\(movieInfo.runtime)분 평점 : \(movieInfo.rate) 점"
+        cell.posterImageView.image = UIImage(named: movieInfo.title)
         return cell
     }
     

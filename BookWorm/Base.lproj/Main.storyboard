@@ -106,14 +106,13 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCollectionCell" id="OES-8s-23b">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LookingCollectionViewCell" reuseIdentifier="LookingCollectionViewCell" id="OES-8s-23b" customClass="LookingCollectionViewCell" customModule="BookWorm" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BRF-3f-sPm">
                                                         <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </collectionViewCellContentView>
-                                                    <color key="backgroundColor" systemColor="linkColor"/>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
@@ -331,9 +330,6 @@
         <image name="eye.fill" catalog="system" width="128" height="80"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

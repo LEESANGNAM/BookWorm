@@ -24,6 +24,8 @@
 		D698B5FC2A7A386F00ED3D28 /* LookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5FB2A7A386F00ED3D28 /* LookingViewController.swift */; };
 		D698B6012A7A3DEF00ED3D28 /* LookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5FF2A7A3DEF00ED3D28 /* LookingTableViewCell.swift */; };
 		D698B6022A7A3DEF00ED3D28 /* LookingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D698B6002A7A3DEF00ED3D28 /* LookingTableViewCell.xib */; };
+		D698B6052A7A4A4500ED3D28 /* LookingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B6032A7A4A4500ED3D28 /* LookingCollectionViewCell.swift */; };
+		D698B6062A7A4A4500ED3D28 /* LookingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D698B6042A7A4A4500ED3D28 /* LookingCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		D698B5FB2A7A386F00ED3D28 /* LookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingViewController.swift; sourceTree = "<group>"; };
 		D698B5FF2A7A3DEF00ED3D28 /* LookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingTableViewCell.swift; sourceTree = "<group>"; };
 		D698B6002A7A3DEF00ED3D28 /* LookingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookingTableViewCell.xib; sourceTree = "<group>"; };
+		D698B6032A7A4A4500ED3D28 /* LookingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingCollectionViewCell.swift; sourceTree = "<group>"; };
+		D698B6042A7A4A4500ED3D28 /* LookingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookingCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				D698B5E32A77D3E200ED3D28 /* BookWormCollectionViewCell.xib */,
 				D698B5FF2A7A3DEF00ED3D28 /* LookingTableViewCell.swift */,
 				D698B6002A7A3DEF00ED3D28 /* LookingTableViewCell.xib */,
+				D698B6032A7A4A4500ED3D28 /* LookingCollectionViewCell.swift */,
+				D698B6042A7A4A4500ED3D28 /* LookingCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -178,6 +184,7 @@
 				D698B5D62A77D2F400ED3D28 /* Assets.xcassets in Resources */,
 				D698B5E52A77D3E200ED3D28 /* BookWormCollectionViewCell.xib in Resources */,
 				D698B5D42A77D2F200ED3D28 /* Main.storyboard in Resources */,
+				D698B6062A7A4A4500ED3D28 /* LookingCollectionViewCell.xib in Resources */,
 				D698B6022A7A3DEF00ED3D28 /* LookingTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +200,7 @@
 				D698B5ED2A77DD6400ED3D28 /* DetailViewController.swift in Sources */,
 				D698B5E92A77D87800ED3D28 /* Movie.swift in Sources */,
 				D698B5E12A77D38B00ED3D28 /* BookWormCollectionViewController.swift in Sources */,
+				D698B6052A7A4A4500ED3D28 /* LookingCollectionViewCell.swift in Sources */,
 				D698B5EB2A77DD5700ED3D28 /* SearchViewController.swift in Sources */,
 				D698B5D12A77D2F200ED3D28 /* ViewController.swift in Sources */,
 				D698B5F62A79D92300ED3D28 /* MovieInfo.swift in Sources */,
