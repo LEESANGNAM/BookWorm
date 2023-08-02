@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p6A-uE-B43">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tjT-vb-pq8">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--메인-->
+        <!--Book Worm Collection View Controller-->
         <scene sceneID="LAJ-K3-Pgs">
             <objects>
                 <collectionViewController storyboardIdentifier="BookWormCollectionViewController" id="Mjm-1K-Bop" customClass="BookWormCollectionViewController" customModule="BookWorm" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,6 @@
                             <outlet property="delegate" destination="Mjm-1K-Bop" id="iah-x2-PJK"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="메인" image="star.fill" catalog="system" id="LkN-cf-4IP"/>
                     <navigationItem key="navigationItem" id="7IW-iO-FHO">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="Xpi-nw-vwr">
                             <connections>
@@ -49,7 +48,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDx-tK-Pnd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1881.679389312977" y="30.985915492957748"/>
+            <point key="canvasLocation" x="2808.3969465648852" y="30.985915492957748"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="12w-Nn-okx">
@@ -73,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrI-cD-vzl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2936.6412213740455" y="60.563380281690144"/>
+            <point key="canvasLocation" x="3861.8320610687019" y="60.563380281690144"/>
         </scene>
         <!--둘러보기-->
         <scene sceneID="uJZ-Fq-f4h">
@@ -91,15 +90,15 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 본 작품" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00k-wF-k1C">
-                                            <rect key="frame" x="10" y="10" width="83" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="10" y="10.000000000000002" width="86.333333333333329" height="21.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vWp-7y-ECE">
-                                            <rect key="frame" x="0.0" y="41" width="393" height="132"/>
+                                            <rect key="frame" x="0.0" y="41.666666666666671" width="393" height="131.33333333333331"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bDk-QR-etv">
+                                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="bDk-QR-etv">
                                                 <size key="itemSize" width="128" height="128"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -266,25 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9c-I8-BPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3843.5114503816794" y="60.563380281690144"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Wur-Wv-MbI">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p6A-uE-B43" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Fd-8j-9J6">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="tjT-vb-pq8" kind="relationship" relationship="rootViewController" id="77S-cY-BS7"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pw0-AX-slG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="28.244274809160306" y="30.985915492957748"/>
+            <point key="canvasLocation" x="4770.2290076335876" y="60.563380281690144"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KHd-Va-3Lz">
@@ -297,13 +278,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Mjm-1K-Bop" kind="relationship" relationship="viewControllers" id="2KT-QJ-LMh"/>
+                        <segue destination="bFk-uI-uIG" kind="relationship" relationship="viewControllers" id="2KT-QJ-LMh"/>
                         <segue destination="zOG-Nt-Gvq" kind="relationship" relationship="viewControllers" id="KKi-Sj-GG4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UP-J6-hQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954.96183206106866" y="30.985915492957748"/>
+            <point key="canvasLocation" x="737" y="31"/>
         </scene>
         <!--둘러보기-->
         <scene sceneID="YyO-k4-ntZ">
@@ -323,6 +304,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSd-PK-D5Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1916.7938931297708" y="756.33802816901414"/>
+        </scene>
+        <!--메인-->
+        <scene sceneID="6bM-7H-G6J">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bFk-uI-uIG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="메인" image="star.fill" catalog="system" id="LkN-cf-4IP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cbd-Me-T98">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Mjm-1K-Bop" kind="relationship" relationship="rootViewController" id="5f2-lf-DaN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X6E-I4-gHR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1881.679389312977" y="30.985915492957748"/>
         </scene>
     </scenes>
     <resources>
