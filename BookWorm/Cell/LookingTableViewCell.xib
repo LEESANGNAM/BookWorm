@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="LookingTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="LookingTableViewCell" rowHeight="223" id="KGk-i7-Jjw" customClass="LookingTableViewCell" customModule="BookWorm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="445" height="223"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="445" height="223"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mr7-ZR-WUZ">
+                        <rect key="frame" x="10" y="10" width="133.66666666666666" height="203"/>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QX5-QY-Gjo">
+                        <rect key="frame" x="163.66666666666669" y="76" width="176.66666666666669" height="71"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목제목제목제목제목제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKS-sQ-OFL">
+                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="20.333333333333332"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022 - 22 - 22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRT-0z-HjC">
+                                <rect key="frame" x="0.0" y="25.333333333333329" width="176.66666666666666" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123분 평점 0.00점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5X7-4o-vda">
+                                <rect key="frame" x="0.0" y="50.666666666666671" width="176.66666666666666" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Mr7-ZR-WUZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="0xy-Dm-KEN"/>
+                    <constraint firstItem="Mr7-ZR-WUZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Bum-Ce-Iv9"/>
+                    <constraint firstAttribute="bottom" secondItem="Mr7-ZR-WUZ" secondAttribute="bottom" constant="10" id="CdC-7o-odR"/>
+                    <constraint firstItem="Mr7-ZR-WUZ" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.3" id="TbA-BF-H1P"/>
+                    <constraint firstItem="QX5-QY-Gjo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="buC-WW-oxK"/>
+                    <constraint firstItem="QX5-QY-Gjo" firstAttribute="leading" secondItem="Mr7-ZR-WUZ" secondAttribute="trailing" constant="20" id="jIJ-kP-T5P"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="SRT-0z-HjC" id="QuC-RQ-wIz"/>
+                <outlet property="mainTitleLabel" destination="MKS-sQ-OFL" id="bd7-h1-9gI"/>
+                <outlet property="posterImageView" destination="Mr7-ZR-WUZ" id="PjM-KU-eQJ"/>
+                <outlet property="timeRateLabel" destination="5X7-4o-vda" id="qfV-Xy-Lbq"/>
+            </connections>
+            <point key="canvasLocation" x="225.19083969465649" y="51.760563380281695"/>
+        </tableViewCell>
+    </objects>
+</document>
