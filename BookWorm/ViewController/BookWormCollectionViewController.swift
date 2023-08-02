@@ -93,7 +93,7 @@ class BookWormCollectionViewController: UICollectionViewController {
         
         vc.movie = movieList.movie[indexPath.row]
         
-        vc.modalTransitionStyle = .crossDissolve
+        vc.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(vc, animated: true)
         
         

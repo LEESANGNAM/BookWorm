@@ -28,6 +28,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         title = ""
         setUpUI(movie: movie!)
+        if let _ = presentingViewController{ // presentingViewController 라는게 있어서  test 해보니 push할땐 값이 넘어오지 않는다.
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back))
+        }
         self.navigationController?.navigationBar.topItem?.title = ""
         // Do any additional setup after loading the view.
     }
@@ -45,6 +48,10 @@ class DetailViewController: UIViewController {
         posterImageView.image = UIImage(named: movie.title)
     }
     
+    @objc func back(){
+          dismiss(animated: true)
+//        self.navigationController?.popViewController(animated: true)
+      }
     
 
 }

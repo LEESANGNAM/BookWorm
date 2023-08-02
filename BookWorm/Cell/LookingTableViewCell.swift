@@ -25,5 +25,12 @@ class LookingTableViewCell: UITableViewCell {
     }
 
     
+    func setUpTableViewCell(movie: Movie){
+        mainTitleLabel.text = movie.title
+        dateLabel.text = movie.releaseDate
+        timeRateLabel.text = "\(movie.runtime)분 평점 : \(movie.rate) 점"
+        posterImageView.image = UIImage(named: movie.title)
+    }
+    
     
 }

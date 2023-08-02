@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LookingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource {
+class LookingViewController: UIViewController{
     
     var movieList = MovieInfo()
 
@@ -17,23 +17,15 @@ class LookingViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lookingTableView.dataSource = self
-        lookingTableView.delegate = self
-        
-        lookingCollectionView.dataSource = self
-        lookingCollectionView.delegate = self
-        
-        let nib = UINib(nibName: "LookingTableViewCell", bundle: nil)
-        lookingTableView.register(nib, forCellReuseIdentifier: "LookingTableViewCell")
-        lookingTableView.rowHeight = 150
-        
-        let nib1 = UINib(nibName: "LookingCollectionViewCell", bundle: nil)
-        lookingCollectionView.register(nib1, forCellWithReuseIdentifier: "LookingCollectionViewCell")
+        configureTableViewLayout()
         configureCollectionViewLayout()
         // Do any additional setup after loading the view.
     }
     
-    
+
+}
+
+extension LookingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,14 +38,39 @@ class LookingViewController: UIViewController, UICollectionViewDelegate, UIColle
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        
+        vc.movie = movieList.movie[indexPath.row]
+    
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+        
+    }
+    
+    
     func configureCollectionViewLayout(){
+        lookingCollectionView.dataSource = self
+        lookingCollectionView.delegate = self
+        
+        let nib1 = UINib(nibName: "LookingCollectionViewCell", bundle: nil)
+        lookingCollectionView.register(nib1, forCellWithReuseIdentifier: "LookingCollectionViewCell")
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 180)
+        layout.itemSize = CGSize(width: 80, height: 150)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         lookingCollectionView.collectionViewLayout = layout
     }
+    
+    
+    
+}
+
+
+extension LookingViewController: UITableViewDelegate,UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "요즘 인기 작품"
@@ -69,13 +86,29 @@ class LookingViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = tableView.dequeueReusableCell(withIdentifier: "LookingTableViewCell") as! LookingTableViewCell
         
         let movieInfo = movieList.movie[indexPath.row]
+        cell.setUpTableViewCell(movie: movieInfo)
         
-        cell.mainTitleLabel.text = movieInfo.title
-        cell.dateLabel.text = movieInfo.releaseDate
-        cell.timeRateLabel.text = "\(movieInfo.runtime)분 평점 : \(movieInfo.rate) 점"
-        cell.posterImageView.image = UIImage(named: movieInfo.title)
         return cell
     }
     
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        
+        vc.movie = movieList.movie[indexPath.row]
+    
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
+    
+    
+    func configureTableViewLayout(){
+        lookingTableView.dataSource = self
+        lookingTableView.delegate = self
+        lookingTableView.rowHeight = 150
+        
+        let nib = UINib(nibName: "LookingTableViewCell", bundle: nil)
+        lookingTableView.register(nib, forCellReuseIdentifier: "LookingTableViewCell")
+    }
 }
