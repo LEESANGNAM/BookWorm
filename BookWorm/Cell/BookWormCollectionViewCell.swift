@@ -22,7 +22,7 @@ class BookWormCollectionViewCell: UICollectionViewCell {
     func configreCollectionCell(movie: Movie){
         
         self.layer.cornerRadius = 20
-        backgroundColor = .randomColor()
+        backgroundColor = movie.color
         
         titleLabel.text = movie.title
         titleLabel.textColor = .white

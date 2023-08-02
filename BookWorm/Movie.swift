@@ -15,4 +15,5 @@ struct Movie {
     var overview: String
     var rate: Double
     var like: Bool
+    var color: UIColor
 }
