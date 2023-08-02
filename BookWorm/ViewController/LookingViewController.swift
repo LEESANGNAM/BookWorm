@@ -22,6 +22,15 @@ class LookingViewController: UIViewController{
         // Do any additional setup after loading the view.
     }
     
+    func showFullScreenPresent(movie: Movie){
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        
+        vc.movie = movie
+    
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
 
 }
 
@@ -39,14 +48,8 @@ extension LookingViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
-        
-        vc.movie = movieList.movie[indexPath.row]
-    
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
-        
+        let movie = movieList.movie[indexPath.row]
+        showFullScreenPresent(movie: movie)
     }
     
     
@@ -93,13 +96,8 @@ extension LookingViewController: UITableViewDelegate,UITableViewDataSource  {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
-        
-        vc.movie = movieList.movie[indexPath.row]
-    
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
+        let movie = movieList.movie[indexPath.row]
+        showFullScreenPresent(movie: movie)
     }
     
     
