@@ -22,10 +22,17 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var posterImageView: UIImageView!
     
+    @IBOutlet weak var memoTextView: UITextView!
     
+    let placeHolder = "여기에 메모를 해주세요"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        memoTextView.delegate = self
+        
+        memoTextView.text = placeHolder
+        memoTextView.textColor = .lightGray
+        
         title = ""
         setUpUI(movie: movie!)
         if let _ = presentingViewController{ // presentingViewController 라는게 있어서  test 해보니 push할땐 값이 넘어오지 않는다.
@@ -54,4 +61,32 @@ class DetailViewController: UIViewController {
       }
     
 
+}
+
+
+extension DetailViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        print(#function)
+        print(textView.text.count)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print(#function)
+        if textView.text == placeHolder {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print(#function)
+        if textView.text.isEmpty {
+            textView.text = placeHolder
+            textView.textColor = .lightGray
+        }
+        
+    }
+    
+    
 }
