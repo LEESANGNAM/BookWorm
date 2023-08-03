@@ -23,7 +23,6 @@ class BookWormCollectionViewController: UICollectionViewController {
             collectionView.reloadData()
         }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +33,7 @@ class BookWormCollectionViewController: UICollectionViewController {
         setUpSearchBar()
       
     }
-    
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
-        
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-        
         guard let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as? SearchViewController else { return }
         
         let nav = UINavigationController(rootViewController: vc)
@@ -46,9 +41,25 @@ class BookWormCollectionViewController: UICollectionViewController {
         nav.modalPresentationStyle = .fullScreen
         
         present(nav, animated: true)
-        
     }
-    
+    @objc func likeButtonTapped(_ sender: UIButton){
+        // 검색 상태 == true
+        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
+            let searchTitle = searchMovieList[sender.tag].title
+            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
+            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
+            {// 버튼의 상태를 바꾼다.
+                searchMovieList[sender.tag].like.toggle()
+                movieList.movie[index].like.toggle()
+            }
+        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
+            movieList.movie[sender.tag].like.toggle()
+        }
+    }
+}
+
+// UICollectionView
+extension BookWormCollectionViewController{
     func setCollectionViewLayout(){
         //cell estimated size non으로 인터페이스 빌더에서 설정 할 것!
         let layout = UICollectionViewFlowLayout()
@@ -57,7 +68,6 @@ class BookWormCollectionViewController: UICollectionViewController {
         let width = UIScreen.main.bounds.width - (spacing * 3)
         let itemSize = width / 2
         
-        
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
         //컬렉션뷰 inset
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
@@ -65,14 +75,9 @@ class BookWormCollectionViewController: UICollectionViewController {
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
         collectionView.collectionViewLayout = layout
-        
-        
     }
-   
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return isSearch ? searchMovieList.count : movieList.movie.count
     }
 
@@ -86,34 +91,13 @@ class BookWormCollectionViewController: UICollectionViewController {
         }
         cell.configreCollectionCell(movie: movie)
         
-    
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         
         return cell
     }
     
-    @objc func likeButtonTapped(_ sender: UIButton){
-        // 검색 상태 == true
-        if isSearch{
-            // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
-            let searchTitle = searchMovieList[sender.tag].title
-            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
-            if let index = movieList.movie.firstIndex(where: { Movie in
-                Movie.title == searchTitle
-            }){ // 버튼의 상태를 바꾼다.
-                searchMovieList[sender.tag].like.toggle()
-                movieList.movie[index].like.toggle()
-            }
-        }else{
-            // 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
-            movieList.movie[sender.tag].like.toggle()
-        }
-    }
-    
-    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         if isSearch{
             vc.movie = searchMovieList[indexPath.row]
@@ -122,15 +106,10 @@ class BookWormCollectionViewController: UICollectionViewController {
         }
         vc.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(vc, animated: true)
-        
-        
     }
-
-    
-
 }
 
-
+// UISearchBarDelegate
 extension BookWormCollectionViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -141,11 +120,13 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
         isSearch = true
         searchMovie(title : text)
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearch = false
         searchBar.text = ""
         collectionView.reloadData()
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             isSearch = false
@@ -155,7 +136,6 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
             searchMovie(title : searchText)
         }
     }
-
     // 해당 영화 찾는 함수
     func searchMovie(title : String){
         searchMovieList.removeAll()
