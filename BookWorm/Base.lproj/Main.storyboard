@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gfS-ZP-gXI">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gfS-ZP-gXI">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -72,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrI-cD-vzl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3861.8320610687019" y="60.563380281690144"/>
+            <point key="canvasLocation" x="2844" y="-655"/>
         </scene>
         <!--둘러보기-->
         <scene sceneID="uJZ-Fq-f4h">
@@ -98,7 +98,7 @@
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vWp-7y-ECE">
                                             <rect key="frame" x="0.0" y="41.666666666666671" width="393" height="131.33333333333331"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="bDk-QR-etv">
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="bDk-QR-etv">
                                                 <size key="itemSize" width="128" height="128"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -265,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9c-I8-BPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4770.2290076335876" y="60.563380281690144"/>
+            <point key="canvasLocation" x="3876" y="370"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KHd-Va-3Lz">
