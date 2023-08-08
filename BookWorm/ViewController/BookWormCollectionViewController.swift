@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import Kingfisher
 
 class BookWormCollectionViewController: UICollectionViewController {
     
     let searchBar = UISearchBar()
     
     var isSearch = false
+    
+    var bookList: [Book] = []
+    
     
     var movieList = MovieInfo(){
         didSet{
@@ -29,6 +35,7 @@ class BookWormCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWormCollectionViewCell")
         self.title = "고래밥님의 책장"
+        callRequest()
         setCollectionViewLayout()
         setUpSearchBar()
       
@@ -152,5 +159,42 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
         searchBar.placeholder = "검색어를 입력해주세요"
         searchBar.showsCancelButton = true
         navigationItem.titleView = searchBar
+    }
+}
+
+// MARK: - json
+extension BookWormCollectionViewController {
+    func callRequest(){
+        
+        let text = "클린코드".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
+        let header: HTTPHeaders = ["Authorization":APIKey.KakaoKey]
+        AF.request(url, method: .get,headers: header).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                for item in json["documents"].arrayValue{
+                    let title = item["title"].stringValue
+                    let authors = item["authors"][0].stringValue
+                    let overview = item["contents"].stringValue
+                    let url = item["url"].stringValue
+                    let price = item["price"].intValue
+                    let date = item["datetime"].stringValue
+                    
+                    let book = Book(title: title, authors: authors as! String, releaseDate: date, price: price, overview: overview, urlString: url, like: false, color: .randomColor())
+                    
+                    self.bookList.append(book)
+                }
+                
+                
+                print(self.bookList)
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

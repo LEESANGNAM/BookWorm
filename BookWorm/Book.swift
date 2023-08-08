@@ -5,16 +5,21 @@
 //  Created by 이상남 on 2023/08/09.
 //
 
-import Foundation
+import UIKit
 
 struct Book{
     var title: String
+    var authors: String
     var releaseDate: String
-    var runtime: Int
+    var price: Int
     var overview: String
-    var rate: Double
+    var urlString: String
     var like: Bool
     var color: UIColor
+    
+    var url: URL{
+        return URL(string: urlString)!
+    }
 }
 
 
