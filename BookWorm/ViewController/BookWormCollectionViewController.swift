@@ -19,16 +19,6 @@ class BookWormCollectionViewController: UICollectionViewController {
     var bookList: [Book] = []
     var searchBookList: [Book] = []
     
-    var movieList = MovieInfo(){
-        didSet{
-            collectionView.reloadData()
-        }
-    }
-    var searchMovieList: [Movie] = []{
-        didSet{
-            collectionView.reloadData()
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,17 +41,17 @@ class BookWormCollectionViewController: UICollectionViewController {
     }
     @objc func likeButtonTapped(_ sender: UIButton){
         // 검색 상태 == true
-        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
-            let searchTitle = searchMovieList[sender.tag].title
-            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
-            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
-            {// 버튼의 상태를 바꾼다.
-                searchMovieList[sender.tag].like.toggle()
-                movieList.movie[index].like.toggle()
-            }
-        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
-            movieList.movie[sender.tag].like.toggle()
-        }
+//        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
+//            let searchTitle = searchMovieList[sender.tag].title
+//            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
+//            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
+//            {// 버튼의 상태를 바꾼다.
+//                searchMovieList[sender.tag].like.toggle()
+//                movieList.movie[index].like.toggle()
+//            }
+//        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
+//            movieList.movie[sender.tag].like.toggle()
+//        }
     }
 }
 
@@ -124,17 +114,19 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearch = false
         searchBar.text = ""
-        collectionView.reloadData()
+        bookList.removeAll()
+        callRequest()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            isSearch = false
-            collectionView.reloadData()
-        }else{
-            isSearch = true
+//        if searchText.isEmpty {
+//            isSearch = false
+//            collectionView.reloadData()
+//        }else{
+        bookList.removeAll()
+            callRequest(text: searchText)
 //            searchMovie(title : searchText)
-        }
+//        }
     }
     // 해당 영화 찾는 함수
 //    func searchMovie(title : String){

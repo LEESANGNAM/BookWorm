@@ -18,7 +18,7 @@ struct Book{
     var color: UIColor
     
     var url: URL{
-        return URL(string: urlString)!
+        return URL(string: urlString) ?? URL(string: "www.naver.com")!
     }
 }
 
