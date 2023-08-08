@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BookWormCollectionViewCell: UICollectionViewCell {
     
@@ -19,20 +20,20 @@ class BookWormCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var likeButton: UIButton!
     
     
-    func configreCollectionCell(movie: Movie){
+    func configreCollectionCell(book: Book){
         
         self.layer.cornerRadius = 20
-        backgroundColor = movie.color
+        backgroundColor = book.color
         
-        titleLabel.text = movie.title
+        titleLabel.text = book.title
         titleLabel.textColor = .white
-        posterImageView.image = UIImage(named: movie.title)
-        rateLabel.text = "\(movie.rate)"
+        posterImageView.kf.setImage(with: book.url)
+        rateLabel.text = "\(book.price)원"
         rateLabel.textColor = .white
         likeButton.tintColor = .white
         likeButton.setTitle("", for: .normal)
 
-        if movie.like {
+        if book.like {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         }else{
             likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)

@@ -50,18 +50,18 @@ class BookWormCollectionViewController: UICollectionViewController {
         present(nav, animated: true)
     }
     @objc func likeButtonTapped(_ sender: UIButton){
-        // 검색 상태 == true
-        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
-            let searchTitle = searchMovieList[sender.tag].title
-            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
-            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
-            {// 버튼의 상태를 바꾼다.
-                searchMovieList[sender.tag].like.toggle()
-                movieList.movie[index].like.toggle()
-            }
-        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
-            movieList.movie[sender.tag].like.toggle()
-        }
+//        // 검색 상태 == true
+//        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
+//            let searchTitle = searchMovieList[sender.tag].title
+//            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
+//            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
+//            {// 버튼의 상태를 바꾼다.
+//                searchMovieList[sender.tag].like.toggle()
+//                movieList.movie[index].like.toggle()
+//            }
+//        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
+//            movieList.movie[sender.tag].like.toggle()
+//        }
     }
 }
 
@@ -85,18 +85,14 @@ extension BookWormCollectionViewController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSearch ? searchMovieList.count : movieList.movie.count
+        return bookList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookWormCollectionViewCell.identifier, for: indexPath) as! BookWormCollectionViewCell
-        let movie: Movie
-        if isSearch{
-            movie = searchMovieList[indexPath.row]
-        }else{
-            movie = movieList.movie[indexPath.row]
-        }
-        cell.configreCollectionCell(movie: movie)
+
+        var book = bookList[indexPath.row]
+        cell.configreCollectionCell(book: book)
         
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
@@ -179,7 +175,7 @@ extension BookWormCollectionViewController {
                     let title = item["title"].stringValue
                     let authors = item["authors"][0].stringValue
                     let overview = item["contents"].stringValue
-                    let url = item["url"].stringValue
+                    let url = item["thumbnail"].stringValue
                     let price = item["price"].intValue
                     let date = item["datetime"].stringValue
                     
@@ -190,7 +186,7 @@ extension BookWormCollectionViewController {
                 
                 
                 print(self.bookList)
-                
+                self.collectionView.reloadData()
                 
             case .failure(let error):
                 print(error)
