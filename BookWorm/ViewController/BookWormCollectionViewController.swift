@@ -102,11 +102,7 @@ extension BookWormCollectionViewController{
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
-        if isSearch{
-            vc.movie = searchMovieList[indexPath.row]
-        }else{
-            vc.movie = movieList.movie[indexPath.row]
-        }
+        vc.book = bookList[indexPath.row]
         vc.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(vc, animated: true)
     }

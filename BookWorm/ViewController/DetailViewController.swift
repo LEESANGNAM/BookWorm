@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailViewController: UIViewController {
     
-    var movie: Movie?
+    var book: Book?
     @IBOutlet weak var movieTitleLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -34,7 +35,7 @@ class DetailViewController: UIViewController {
         memoTextView.textColor = .lightGray
         
         title = ""
-        setUpUI(movie: movie!)
+        setUpUI(book: book!)
         if let _ = presentingViewController{ // presentingViewController 라는게 있어서  test 해보니 push할땐 값이 넘어오지 않는다.
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back))
         }
@@ -42,17 +43,17 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setUpUI(movie: Movie){
-        movieTitleLabel.text = movie.title
+    func setUpUI(book: Book){
+        movieTitleLabel.text = book.title
         movieTitleLabel.textColor = .white
         movieTitleLabel.font = .boldSystemFont(ofSize: 20)
-        dateLabel.text = movie.releaseDate
+        dateLabel.text = book.releaseDate
         dateLabel.textColor = .white
-        timeLabel.text = "\(movie.runtime)분"
+        timeLabel.text = book.authors
         timeLabel.textColor = .white
-        rateLabel.text = "\(movie.rate)점"
-        overViewLabel.text = movie.overview
-        posterImageView.image = UIImage(named: movie.title)
+        rateLabel.text = "\(book.price)원"
+        overViewLabel.text = book.overview
+        posterImageView.kf.setImage(with: book.url)
     }
     
     @objc func back(){

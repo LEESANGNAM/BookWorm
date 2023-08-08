@@ -22,10 +22,10 @@ class LookingViewController: UIViewController{
         // Do any additional setup after loading the view.
     }
     
-    func showFullScreenPresent(movie: Movie){
+    func showFullScreenPresent(book: Book){
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         
-        vc.movie = movie
+        vc.book = book
     
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
@@ -49,7 +49,7 @@ extension LookingViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = movieList.movie[indexPath.row]
-        showFullScreenPresent(movie: movie)
+//        showFullScreenPresent(movie: movie)
     }
     
     
@@ -97,7 +97,7 @@ extension LookingViewController: UITableViewDelegate,UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = movieList.movie[indexPath.row]
-        showFullScreenPresent(movie: movie)
+//        showFullScreenPresent(movie: movie)
     }
     
     
