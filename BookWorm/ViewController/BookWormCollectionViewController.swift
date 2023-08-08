@@ -17,7 +17,7 @@ class BookWormCollectionViewController: UICollectionViewController {
     var isSearch = false
     
     var bookList: [Book] = []
-    
+    var searchBookList: [Book] = []
     
     var movieList = MovieInfo(){
         didSet{
@@ -50,18 +50,18 @@ class BookWormCollectionViewController: UICollectionViewController {
         present(nav, animated: true)
     }
     @objc func likeButtonTapped(_ sender: UIButton){
-//        // 검색 상태 == true
-//        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
-//            let searchTitle = searchMovieList[sender.tag].title
-//            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
-//            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
-//            {// 버튼의 상태를 바꾼다.
-//                searchMovieList[sender.tag].like.toggle()
-//                movieList.movie[index].like.toggle()
-//            }
-//        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
-//            movieList.movie[sender.tag].like.toggle()
-//        }
+        // 검색 상태 == true
+        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
+            let searchTitle = searchMovieList[sender.tag].title
+            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
+            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
+            {// 버튼의 상태를 바꾼다.
+                searchMovieList[sender.tag].like.toggle()
+                movieList.movie[index].like.toggle()
+            }
+        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
+            movieList.movie[sender.tag].like.toggle()
+        }
     }
 }
 
@@ -117,7 +117,8 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
             return
         }
         isSearch = true
-        searchMovie(title : text)
+        bookList.removeAll()
+        callRequest(text: text)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -132,19 +133,19 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
             collectionView.reloadData()
         }else{
             isSearch = true
-            searchMovie(title : searchText)
+//            searchMovie(title : searchText)
         }
     }
     // 해당 영화 찾는 함수
-    func searchMovie(title : String){
-        searchMovieList.removeAll()
-        for item in movieList.movie {
-            if item.title.contains(title){
-                searchMovieList.append(item)
-            }
-        }
-        collectionView.reloadData()
-    }
+//    func searchMovie(title : String){
+//        searc.removeAll()
+//        for item in movieList.movie {
+//            if item.title.contains(title){
+//                searchMovieList.append(item)
+//            }
+//        }
+//        collectionView.reloadData()
+//    }
 
     func setUpSearchBar(){
         searchBar.delegate = self
@@ -156,9 +157,10 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
 
 // MARK: - json
 extension BookWormCollectionViewController {
-    func callRequest(){
+    
+    func callRequest(text: String = "클린코드"){
         
-        let text = "클린코드".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let text = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
         let header: HTTPHeaders = ["Authorization":APIKey.KakaoKey]
         AF.request(url, method: .get,headers: header).validate().responseJSON { response in
