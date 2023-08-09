@@ -167,6 +167,8 @@ extension BookWormCollectionViewController {
                         let price = item["price"].intValue
                         let date = item["datetime"].stringValue
                         
+                        guard let date = self.dateFormatString(dateString: date, beforeFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", afterFormat: "yyyy-MM-dd") else { return }
+                        
                         let book = Book(title: title, authors: authors as! String, releaseDate: date, price: price, overview: overview, urlString: url, like: false, color: .randomColor())
                         self.booktitleList.append(title)
                         self.bookList.append(book)
@@ -180,5 +182,15 @@ extension BookWormCollectionViewController {
                 print(error)
             }
         }
+    }
+    
+    func dateFormatString(dateString: String, beforeFormat: String, afterFormat: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = beforeFormat
+        if let date = dateFormatter.date(from: dateString){
+            dateFormatter.dateFormat = afterFormat
+            return dateFormatter.string(from: date)
+        }
+        return nil
     }
 }
