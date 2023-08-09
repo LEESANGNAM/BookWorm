@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class LookingTableViewCell: UITableViewCell {
 
@@ -21,15 +22,15 @@ class LookingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         mainTitleLabel.font = .boldSystemFont(ofSize: 17)
-        mainTitleLabel.textColor = .black
+        mainTitleLabel.textColor = .white
     }
 
     
-    func setUpTableViewCell(movie: Movie){
-        mainTitleLabel.text = movie.title
-        dateLabel.text = movie.releaseDate
-        timeRateLabel.text = "\(movie.runtime)분 평점 : \(movie.rate) 점"
-        posterImageView.image = UIImage(named: movie.title)
+    func setUpTableViewCell(book: Book){
+        mainTitleLabel.text = book.title
+        dateLabel.text = book.authors
+        timeRateLabel.text = "\(book.price)원"
+        posterImageView.kf.setImage(with: book.url)
     }
     
     
