@@ -17,41 +17,29 @@ class BookWormCollectionViewController: UICollectionViewController {
     var isSearch = false
     
     var bookList: [Book] = []
-    var searchBookList: [Book] = []
+    var booktitleList: [String] = []
+    var page = 1
+    var isEnd = false // 현재 페이지가 마지막인지 점검하는 프로퍼티
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWormCollectionViewCell")
         self.title = "고래밥님의 책장"
-        callRequest()
+        collectionView.prefetchDataSource = self
+        callRequest(page: page)
         setCollectionViewLayout()
         setUpSearchBar()
-      
+        
     }
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
         guard let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as? SearchViewController else { return }
-        
         let nav = UINavigationController(rootViewController: vc)
-        
         nav.modalPresentationStyle = .fullScreen
-        
         present(nav, animated: true)
     }
     @objc func likeButtonTapped(_ sender: UIButton){
-        // 검색 상태 == true
-//        if isSearch{ // 검색된(검색배열에 담긴)타이틀을 비교를 위해 담아놓는다.
-//            let searchTitle = searchMovieList[sender.tag].title
-//            // firstindex 클로저로 실행된다. 배열에서 일치하는 title의 인덱스를 가져온다.
-//            if let index = movieList.movie.firstIndex(where: { $0.title == searchTitle})
-//            {// 버튼의 상태를 바꾼다.
-//                searchMovieList[sender.tag].like.toggle()
-//                movieList.movie[index].like.toggle()
-//            }
-//        }else{// 검색상태가 아니라면 원래 있는 배열의 상태를 변경한다.
-//            movieList.movie[sender.tag].like.toggle()
-//        }
+        bookList[sender.tag].like.toggle()
     }
 }
 
@@ -77,14 +65,14 @@ extension BookWormCollectionViewController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookList.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookWormCollectionViewCell.identifier, for: indexPath) as! BookWormCollectionViewCell
-
+        
         var book = bookList[indexPath.row]
         cell.configreCollectionCell(book: book)
         
-        cell.likeButton.tag = indexPath.item
+        cell.likeButton.tag = indexPath.row
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         
         return cell
@@ -98,47 +86,55 @@ extension BookWormCollectionViewController{
     }
 }
 
+//MARK: - UICollectionViewDataSourcePrefetching
+extension BookWormCollectionViewController: UICollectionViewDataSourcePrefetching{
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths{
+            if bookList.count - 1 == indexPath.row && page < 15 && !isEnd {
+                page += 1
+                callRequest(text: searchBar.text!, page: page)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        print("취소구현 알아보기 \(indexPaths)")
+    }
+    
+    
+
+}
+
+
+
 // UISearchBarDelegate
 extension BookWormCollectionViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text, !text.isEmpty else {
-            isSearch = false
-            return
-        }
-        isSearch = true
+        page = 1
         bookList.removeAll()
-        callRequest(text: text)
+        booktitleList.removeAll()
+        guard let text = searchBar.text, !text.isEmpty else {  return }
+        searchBar.resignFirstResponder()
+        callRequest(text: text, page: page)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        page = 1
         isSearch = false
         searchBar.text = ""
         bookList.removeAll()
-        callRequest()
+        callRequest(page: page)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchText.isEmpty {
-//            isSearch = false
-//            collectionView.reloadData()
-//        }else{
+        page = 1
         bookList.removeAll()
-            callRequest(text: searchText)
-//            searchMovie(title : searchText)
-//        }
-    }
-    // 해당 영화 찾는 함수
-//    func searchMovie(title : String){
-//        searc.removeAll()
-//        for item in movieList.movie {
-//            if item.title.contains(title){
-//                searchMovieList.append(item)
-//            }
-//        }
-//        collectionView.reloadData()
-//    }
+        callRequest(text: searchText, page: page)
 
+    }
+    
     func setUpSearchBar(){
         searchBar.delegate = self
         searchBar.placeholder = "검색어를 입력해주세요"
@@ -150,34 +146,36 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
 // MARK: - json
 extension BookWormCollectionViewController {
     
-    func callRequest(text: String = "클린코드"){
+    func callRequest(text: String = "클린코드",page: Int){
         
         let text = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
+        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)&size=30&page=\(page)"
         let header: HTTPHeaders = ["Authorization":APIKey.KakaoKey]
         AF.request(url, method: .get,headers: header).validate().responseJSON { response in
+            
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-                
-                for item in json["documents"].arrayValue{
-                    let title = item["title"].stringValue
-                    let authors = item["authors"][0].stringValue
-                    let overview = item["contents"].stringValue
-                    let url = item["thumbnail"].stringValue
-                    let price = item["price"].intValue
-                    let date = item["datetime"].stringValue
+                if response.response?.statusCode == 200 {
+                    let json = JSON(value)
+                    print("JSON: \(json)")
                     
-                    let book = Book(title: title, authors: authors as! String, releaseDate: date, price: price, overview: overview, urlString: url, like: false, color: .randomColor())
-                    
-                    self.bookList.append(book)
+                    for item in json["documents"].arrayValue{
+                        let title = item["title"].stringValue
+                        let authors = item["authors"][0].stringValue
+                        let overview = item["contents"].stringValue
+                        let url = item["thumbnail"].stringValue
+                        let price = item["price"].intValue
+                        let date = item["datetime"].stringValue
+                        
+                        let book = Book(title: title, authors: authors as! String, releaseDate: date, price: price, overview: overview, urlString: url, like: false, color: .randomColor())
+                        self.booktitleList.append(title)
+                        self.bookList.append(book)
+                    }
+                    print(self.booktitleList.count)
+                    self.collectionView.reloadData()
+                }else{
+                    print("오류")
                 }
-                
-                
-                print(self.bookList)
-                self.collectionView.reloadData()
-                
             case .failure(let error):
                 print(error)
             }
