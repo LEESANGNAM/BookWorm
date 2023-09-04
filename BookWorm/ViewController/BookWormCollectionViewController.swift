@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import RealmSwift
 
 class BookWormCollectionViewController: UICollectionViewController {
     
@@ -17,7 +18,7 @@ class BookWormCollectionViewController: UICollectionViewController {
     var isSearch = false
     
     var bookList: [Book] = []
-    var booktitleList: [String] = []
+//    var booktitleList: [String] = []
     var page = 1
     var isEnd = false // 현재 페이지가 마지막인지 점검하는 프로퍼티
     
@@ -27,6 +28,7 @@ class BookWormCollectionViewController: UICollectionViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWormCollectionViewCell")
         self.title = "고래밥님의 책장"
         collectionView.prefetchDataSource = self
+        
         callRequest(page: page)
         setCollectionViewLayout()
         setUpSearchBar()
@@ -39,7 +41,17 @@ class BookWormCollectionViewController: UICollectionViewController {
         present(nav, animated: true)
     }
     @objc func likeButtonTapped(_ sender: UIButton){
+        print("button Tapped")
         bookList[sender.tag].like.toggle()
+        let book = bookList[sender.tag]
+        let likeBook = LikeBook(book: book)
+        print(likeBook)
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(likeBook)
+            print("Realm Add Succeed")
+        }
+        collectionView.reloadData()
     }
 }
 
@@ -114,7 +126,7 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         page = 1
         bookList.removeAll()
-        booktitleList.removeAll()
+//        booktitleList.removeAll()
         guard let text = searchBar.text, !text.isEmpty else {  return }
         searchBar.resignFirstResponder()
         callRequest(text: text, page: page)
@@ -170,10 +182,10 @@ extension BookWormCollectionViewController {
                         guard let date = self.dateFormatString(dateString: date, beforeFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", afterFormat: "yyyy-MM-dd") else { return }
                         
                         let book = Book(title: title, authors: authors as! String, releaseDate: date, price: price, overview: overview, urlString: url, like: false, color: .randomColor())
-                        self.booktitleList.append(title)
+//                        self.booktitleList.append(title)
                         self.bookList.append(book)
                     }
-                    print(self.booktitleList.count)
+//                    print(self.booktitleList.count)
                     self.collectionView.reloadData()
                 }else{
                     print("오류")

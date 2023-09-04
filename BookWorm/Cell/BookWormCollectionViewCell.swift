@@ -40,4 +40,23 @@ class BookWormCollectionViewCell: UICollectionViewCell {
         }
 
     }
+    func configreCollectionCell(book: LikeBook){
+        
+        self.layer.cornerRadius = 20
+        
+        titleLabel.text = book.title
+        titleLabel.textColor = .white
+        posterImageView.kf.setImage(with: book.url)
+        rateLabel.text = "\(book.price)원"
+        rateLabel.textColor = .white
+        likeButton.tintColor = .white
+        likeButton.setTitle("", for: .normal)
+
+        if book.like {
+            likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+        }else{
+            likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+        }
+
+    }
 }

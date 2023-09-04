@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D62E9ACF2AA5E94E0087BF88 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D62E9ACE2AA5E94E0087BF88 /* Realm */; };
+		D62E9AD12AA5E94E0087BF88 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D62E9AD02AA5E94E0087BF88 /* RealmSwift */; };
+		D62E9AD42AA5E9A20087BF88 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E9AD32AA5E9A20087BF88 /* RealmModel.swift */; };
+		D66D8FF72AA5DEB000B301C8 /* LikeBookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D8FF62AA5DEB000B301C8 /* LikeBookCollectionViewController.swift */; };
 		D698B5CD2A77D2F200ED3D28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5CC2A77D2F200ED3D28 /* AppDelegate.swift */; };
 		D698B5CF2A77D2F200ED3D28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5CE2A77D2F200ED3D28 /* SceneDelegate.swift */; };
 		D698B5D12A77D2F200ED3D28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5D02A77D2F200ED3D28 /* ViewController.swift */; };
@@ -35,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D62E9AD32AA5E9A20087BF88 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		D66D8FF62AA5DEB000B301C8 /* LikeBookCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeBookCollectionViewController.swift; sourceTree = "<group>"; };
 		D698B5C92A77D2F200ED3D28 /* BookWorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookWorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D698B5CC2A77D2F200ED3D28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D698B5CE2A77D2F200ED3D28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +74,8 @@
 			files = (
 				D69AB5222A82AAD6007B210C /* Alamofire in Frameworks */,
 				D69AB51F2A82AACB007B210C /* Kingfisher in Frameworks */,
+				D62E9ACF2AA5E94E0087BF88 /* Realm in Frameworks */,
+				D62E9AD12AA5E94E0087BF88 /* RealmSwift in Frameworks */,
 				D69AB51C2A82AAC3007B210C /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D62E9AD22AA5E98F0087BF88 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				D62E9AD32AA5E9A20087BF88 /* RealmModel.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		D698B5C02A77D2F200ED3D28 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +110,7 @@
 		D698B5CB2A77D2F200ED3D28 /* BookWorm */ = {
 			isa = PBXGroup;
 			children = (
+				D62E9AD22AA5E98F0087BF88 /* Realm */,
 				D698B5FE2A7A3DA300ED3D28 /* ViewController */,
 				D698B5FD2A7A3D5400ED3D28 /* Cell */,
 				D698B5CC2A77D2F200ED3D28 /* AppDelegate.swift */,
@@ -133,6 +150,7 @@
 				D698B5EA2A77DD5700ED3D28 /* SearchViewController.swift */,
 				D698B5EC2A77DD6400ED3D28 /* DetailViewController.swift */,
 				D698B5E02A77D38B00ED3D28 /* BookWormCollectionViewController.swift */,
+				D66D8FF62AA5DEB000B301C8 /* LikeBookCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -157,6 +175,8 @@
 				D69AB51B2A82AAC3007B210C /* SwiftyJSON */,
 				D69AB51E2A82AACB007B210C /* Kingfisher */,
 				D69AB5212A82AAD6007B210C /* Alamofire */,
+				D62E9ACE2AA5E94E0087BF88 /* Realm */,
+				D62E9AD02AA5E94E0087BF88 /* RealmSwift */,
 			);
 			productName = BookWorm;
 			productReference = D698B5C92A77D2F200ED3D28 /* BookWorm.app */;
@@ -190,6 +210,7 @@
 				D69AB51A2A82AAC3007B210C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				D69AB51D2A82AACB007B210C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D69AB5202A82AAD6007B210C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D62E9ACD2AA5E94E0087BF88 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = D698B5CA2A77D2F200ED3D28 /* Products */;
 			projectDirPath = "";
@@ -234,6 +255,8 @@
 				D698B5F62A79D92300ED3D28 /* MovieInfo.swift in Sources */,
 				D698B5CD2A77D2F200ED3D28 /* AppDelegate.swift in Sources */,
 				D698B5E42A77D3E200ED3D28 /* BookWormCollectionViewCell.swift in Sources */,
+				D62E9AD42AA5E9A20087BF88 /* RealmModel.swift in Sources */,
+				D66D8FF72AA5DEB000B301C8 /* LikeBookCollectionViewController.swift in Sources */,
 				D698B5FC2A7A386F00ED3D28 /* LookingViewController.swift in Sources */,
 				D698B5CF2A77D2F200ED3D28 /* SceneDelegate.swift in Sources */,
 				D698B6012A7A3DEF00ED3D28 /* LookingTableViewCell.swift in Sources */,
@@ -458,6 +481,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D62E9ACD2AA5E94E0087BF88 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.42.1;
+			};
+		};
 		D69AB51A2A82AAC3007B210C /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -485,6 +516,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D62E9ACE2AA5E94E0087BF88 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D62E9ACD2AA5E94E0087BF88 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		D62E9AD02AA5E94E0087BF88 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D62E9ACD2AA5E94E0087BF88 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		D69AB51B2A82AAC3007B210C /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D69AB51A2A82AAC3007B210C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;

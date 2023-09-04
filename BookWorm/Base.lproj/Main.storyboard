@@ -50,6 +50,41 @@
             </objects>
             <point key="canvasLocation" x="2808.3969465648852" y="30.985915492957748"/>
         </scene>
+        <!--내가 좋아하는책-->
+        <scene sceneID="xgh-sQ-VRv">
+            <objects>
+                <collectionViewController id="olq-Uh-ahR" customClass="LikeBookCollectionViewController" customModule="BookWorm" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NOg-50-aDa">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Nb-Ko-Ohk">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookWormCollectionViewCell" id="xbz-Bk-Nrj">
+                                <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YMT-AN-i1o">
+                                    <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="olq-Uh-ahR" id="Qbx-LK-toq"/>
+                            <outlet property="delegate" destination="olq-Uh-ahR" id="fZb-Oz-W0K"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="내가 좋아하는책" image="hand.thumbsup.fill" catalog="system" id="2k3-wu-NnA"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wxL-dg-DgC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2824" y="-630"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="12w-Nn-okx">
             <objects>
@@ -72,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrI-cD-vzl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2844" y="-655"/>
+            <point key="canvasLocation" x="3876" y="-324"/>
         </scene>
         <!--둘러보기-->
         <scene sceneID="uJZ-Fq-f4h">
@@ -277,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9c-I8-BPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3876" y="370"/>
+            <point key="canvasLocation" x="3876" y="432"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KHd-Va-3Lz">
@@ -286,12 +321,14 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="r1p-uP-3Vw"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kyU-NW-BVl">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="bFk-uI-uIG" kind="relationship" relationship="viewControllers" id="2KT-QJ-LMh"/>
                         <segue destination="zOG-Nt-Gvq" kind="relationship" relationship="viewControllers" id="KKi-Sj-GG4"/>
+                        <segue destination="olq-Uh-ahR" kind="relationship" relationship="viewControllers" id="wAu-Vv-uMC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UP-J6-hQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -339,6 +376,7 @@
     </scenes>
     <resources>
         <image name="eye.fill" catalog="system" width="128" height="80"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">

@@ -20,22 +20,22 @@
                         <rect key="frame" x="10" y="10" width="133.66666666666666" height="203"/>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QX5-QY-Gjo">
-                        <rect key="frame" x="163.66666666666669" y="76" width="176.66666666666669" height="71"/>
+                        <rect key="frame" x="163.66666666666663" y="76" width="241.33333333333337" height="71"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목제목제목제목제목제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKS-sQ-OFL">
-                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="20.333333333333332"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKS-sQ-OFL">
+                                <rect key="frame" x="0.0" y="0.0" width="241.33333333333334" height="20.333333333333332"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022 - 22 - 22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRT-0z-HjC">
-                                <rect key="frame" x="0.0" y="25.333333333333329" width="176.66666666666666" height="20.333333333333329"/>
+                                <rect key="frame" x="0.0" y="25.333333333333329" width="241.33333333333334" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123분 평점 0.00점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5X7-4o-vda">
-                                <rect key="frame" x="0.0" y="50.666666666666671" width="176.66666666666666" height="20.333333333333329"/>
+                                <rect key="frame" x="0.0" y="50.666666666666671" width="241.33333333333334" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,6 +48,7 @@
                     <constraint firstItem="Mr7-ZR-WUZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Bum-Ce-Iv9"/>
                     <constraint firstAttribute="bottom" secondItem="Mr7-ZR-WUZ" secondAttribute="bottom" constant="10" id="CdC-7o-odR"/>
                     <constraint firstItem="Mr7-ZR-WUZ" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.3" id="TbA-BF-H1P"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="QX5-QY-Gjo" secondAttribute="trailing" constant="20" id="ZZa-ia-zYP"/>
                     <constraint firstItem="QX5-QY-Gjo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="buC-WW-oxK"/>
                     <constraint firstItem="QX5-QY-Gjo" firstAttribute="leading" secondItem="Mr7-ZR-WUZ" secondAttribute="trailing" constant="20" id="jIJ-kP-T5P"/>
                 </constraints>

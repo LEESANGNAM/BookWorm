@@ -22,7 +22,7 @@ class LookingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         mainTitleLabel.font = .boldSystemFont(ofSize: 17)
-        mainTitleLabel.textColor = .white
+        mainTitleLabel.textColor = .black
     }
 
     
