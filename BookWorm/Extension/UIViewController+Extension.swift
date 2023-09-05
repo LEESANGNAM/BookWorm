@@ -8,24 +8,22 @@
 import UIKit
 
 extension UIViewController{
-    func showActionSheet(text: String, addButtonText1: String? = nil, addButtonText2: String? = nil, Action: (() -> Void)? = nil) {
+    func showActionSheet(text: String, addButtonText1: String = "수정하기", addButtonText2: String = "삭제하기", Action: ((AlertActionType) -> Void)? = nil) {
         let alert = UIAlertController(title: "짜잔", message: text, preferredStyle: .actionSheet)
         
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let cancel = UIAlertAction(title: "취소", style: .cancel){_ in
+            Action?(AlertActionType.cancle)
+        }
         alert.addAction(cancel)
         
-        if let buttonText = addButtonText1 {
-            let customAction1 = UIAlertAction(title: buttonText, style: .default) { _ in
-                Action?()
-            }
-            alert.addAction(customAction1)
+        let customAction1 = UIAlertAction(title: addButtonText1, style: .default) { _ in
+            Action?(AlertActionType.update)
         }
-        if let buttonText = addButtonText2 {
-            let customAction2 = UIAlertAction(title: buttonText, style: .default) { _ in
-                Action?()
-            }
-            alert.addAction(customAction2)
+        alert.addAction(customAction1)
+        let customAction2 = UIAlertAction(title: addButtonText2, style: .default) { _ in
+            Action?(AlertActionType.delete)
         }
+        alert.addAction(customAction2)
         
         present(alert, animated: true)
     }

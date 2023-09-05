@@ -15,6 +15,7 @@
 		D63FD4F42AA76293001AE06B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD4F32AA76293001AE06B /* String+Extension.swift */; };
 		D63FD4F72AA7754E001AE06B /* RealmDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD4F62AA7754E001AE06B /* RealmDBManager.swift */; };
 		D63FD4F92AA79C3E001AE06B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD4F82AA79C3E001AE06B /* UIViewController+Extension.swift */; };
+		D63FD4FF2AA79E43001AE06B /* AlertActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD4FE2AA79E43001AE06B /* AlertActionType.swift */; };
 		D66D8FF72AA5DEB000B301C8 /* LikeBookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D8FF62AA5DEB000B301C8 /* LikeBookCollectionViewController.swift */; };
 		D698B5CD2A77D2F200ED3D28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5CC2A77D2F200ED3D28 /* AppDelegate.swift */; };
 		D698B5CF2A77D2F200ED3D28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698B5CE2A77D2F200ED3D28 /* SceneDelegate.swift */; };
@@ -50,6 +51,7 @@
 		D63FD4F32AA76293001AE06B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D63FD4F62AA7754E001AE06B /* RealmDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBManager.swift; sourceTree = "<group>"; };
 		D63FD4F82AA79C3E001AE06B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		D63FD4FE2AA79E43001AE06B /* AlertActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertActionType.swift; sourceTree = "<group>"; };
 		D66D8FF62AA5DEB000B301C8 /* LikeBookCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeBookCollectionViewController.swift; sourceTree = "<group>"; };
 		D698B5C92A77D2F200ED3D28 /* BookWorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookWorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D698B5CC2A77D2F200ED3D28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		D63FD4FD2AA79E34001AE06B /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				D63FD4FE2AA79E43001AE06B /* AlertActionType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		D698B5C02A77D2F200ED3D28 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 		D698B5CB2A77D2F200ED3D28 /* BookWorm */ = {
 			isa = PBXGroup;
 			children = (
+				D63FD4FD2AA79E34001AE06B /* Enum */,
 				D63FD4F52AA7752A001AE06B /* Manager */,
 				D63FD4F02AA75F8F001AE06B /* NetWork */,
 				D63FD4ED2AA75EF0001AE06B /* Extension */,
@@ -295,6 +306,7 @@
 				D698B5EB2A77DD5700ED3D28 /* SearchViewController.swift in Sources */,
 				D698B5D12A77D2F200ED3D28 /* ViewController.swift in Sources */,
 				D63FD4F92AA79C3E001AE06B /* UIViewController+Extension.swift in Sources */,
+				D63FD4FF2AA79E43001AE06B /* AlertActionType.swift in Sources */,
 				D63FD4F72AA7754E001AE06B /* RealmDBManager.swift in Sources */,
 				D698B5F62A79D92300ED3D28 /* MovieInfo.swift in Sources */,
 				D698B5CD2A77D2F200ED3D28 /* AppDelegate.swift in Sources */,

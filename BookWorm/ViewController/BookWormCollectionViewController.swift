@@ -81,10 +81,21 @@ extension BookWormCollectionViewController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
-        vc.book = bookList[indexPath.row]
-        vc.modalTransitionStyle = .coverVertical
-        navigationController?.pushViewController(vc, animated: true)
+        let book = bookList[indexPath.row]
+        showActionSheet(text: "골라주세요"){ actionType in
+            switch actionType{
+            case .update:
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                guard let vc = sb.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
+                vc.book = book
+                vc.modalTransitionStyle = .coverVertical
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .delete:
+                RealmDBManager.shared.deleteRealmBook(book: book)
+                self.collectionView.reloadData()
+            case .cancle:  self.dismiss(animated: true)
+            }
+        }
     }
 }
 
