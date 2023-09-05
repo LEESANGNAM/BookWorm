@@ -17,11 +17,11 @@ class BookWormCollectionViewController: UICollectionViewController {
     
     var isSearch = false
     
-    var bookList: [Book] = []
+    var bookList: [RealmBook] = []
 //    var booktitleList: [String] = []
     var page = 1
     var isEnd = false // 현재 페이지가 마지막인지 점검하는 프로퍼티
-    
+    let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
@@ -30,10 +30,8 @@ class BookWormCollectionViewController: UICollectionViewController {
         collectionView.prefetchDataSource = self
         
         APIManager.shard.callRequest(page: page) {
-            print("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ여기가결과데이터ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ")
-            print($0)
+            self.bookList = $0
         }
-//        callRequest(page: page)
         setCollectionViewLayout()
         setUpSearchBar()
         
@@ -45,17 +43,18 @@ class BookWormCollectionViewController: UICollectionViewController {
         present(nav, animated: true)
     }
     @objc func likeButtonTapped(_ sender: UIButton){
-//        print("button Tapped")
-//        bookList[sender.tag].like.toggle()
-//        let book = bookList[sender.tag]
-//        let likeBook = LikeBook(book: book)
-//        print(likeBook)
-//        let realm = try! Realm()
-//        try! realm.write {
-//            realm.add(likeBook)
-//            print("Realm Add Succeed")
-//        }
-//        collectionView.reloadData()
+        print("button Tapped")
+        let book = bookList[sender.tag]
+        let islike = book.islikeCheck
+        // false 일때 true로 바꾸고 테이블에 추가
+        if !islike{
+            book.islikeCheck.toggle()
+            try! realm.write {
+                realm.add(book)
+                print("Realm Add Succeed")
+            }
+            collectionView.reloadData()
+        }
     }
 }
 
