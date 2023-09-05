@@ -39,6 +39,8 @@ class RealmDBManager {
             }
             if let memo = newMemo {
                 book.memo = memo
+            } else {
+                book.memo = nil
             }
         }
     }

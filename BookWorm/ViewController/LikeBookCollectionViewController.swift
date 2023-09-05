@@ -80,4 +80,10 @@ extension LikeBookCollectionViewController{
         // Configure the cell
         return cell
     }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
+        vc.book = likeBooksData[indexPath.row]
+        vc.modalTransitionStyle = .coverVertical
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

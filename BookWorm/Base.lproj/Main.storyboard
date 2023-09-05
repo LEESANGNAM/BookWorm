@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="2808.3969465648852" y="30.985915492957748"/>
         </scene>
-        <!--내가 좋아하는책-->
+        <!--Like Book Collection View Controller-->
         <scene sceneID="xgh-sQ-VRv">
             <objects>
                 <collectionViewController id="olq-Uh-ahR" customClass="LikeBookCollectionViewController" customModule="BookWorm" customModuleProvider="target" sceneMemberID="viewController">
@@ -79,11 +79,11 @@
                             <outlet property="delegate" destination="olq-Uh-ahR" id="fZb-Oz-W0K"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="내가 좋아하는책" image="hand.thumbsup.fill" catalog="system" id="2k3-wu-NnA"/>
+                    <navigationItem key="navigationItem" id="okM-5M-y5b"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxL-dg-DgC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2824" y="-630"/>
+            <point key="canvasLocation" x="3750.3816793893129" y="-630.28169014084506"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="12w-Nn-okx">
@@ -129,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrI-cD-vzl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3876" y="-324"/>
+            <point key="canvasLocation" x="4802.2900763358775" y="-324.64788732394368"/>
         </scene>
         <!--둘러보기-->
         <scene sceneID="uJZ-Fq-f4h">
@@ -350,7 +350,7 @@
                     <connections>
                         <segue destination="bFk-uI-uIG" kind="relationship" relationship="viewControllers" id="2KT-QJ-LMh"/>
                         <segue destination="zOG-Nt-Gvq" kind="relationship" relationship="viewControllers" id="KKi-Sj-GG4"/>
-                        <segue destination="olq-Uh-ahR" kind="relationship" relationship="viewControllers" id="wAu-Vv-uMC"/>
+                        <segue destination="ugW-Q9-TWw" kind="relationship" relationship="viewControllers" id="wAu-Vv-uMC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UP-J6-hQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -394,6 +394,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X6E-I4-gHR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1881.679389312977" y="30.985915492957748"/>
+        </scene>
+        <!--내가 좋아하는책-->
+        <scene sceneID="Usu-KS-FJi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ugW-Q9-TWw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="내가 좋아하는책" image="hand.thumbsup.fill" catalog="system" id="2k3-wu-NnA"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="epF-6r-lK8">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="olq-Uh-ahR" kind="relationship" relationship="rootViewController" id="Pkp-pA-R5G"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eic-ou-tpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2823.6641221374043" y="-630.28169014084506"/>
         </scene>
     </scenes>
     <resources>

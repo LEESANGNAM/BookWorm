@@ -32,8 +32,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         memoTextView.delegate = self
         
-        memoTextView.text = placeHolder
-        memoTextView.textColor = .lightGray
+        
         
         title = ""
         setUpUI(book: book)
@@ -41,10 +40,25 @@ class DetailViewController: UIViewController {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back))
         }
         self.navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "수정완료", style: .plain, target: self, action: #selector(updateMemo))
         // Do any additional setup after loading the view.
     }
-    
+    @objc func updateMemo(){
+        if memoTextView.text.isEmpty{
+            RealmDBManager.shared.updateRealmBook(book: book)
+        } else if memoTextView.text != placeHolder  {
+            RealmDBManager.shared.updateRealmBook(book: book,newMemo: memoTextView.text)
+        }
+        navigationController?.popViewController(animated: true)
+    }
     func setUpUI(book: RealmBook){
+        if let memoText = book.memo, !memoText.isEmpty {
+            memoTextView.text = memoText
+            memoTextView.textColor = .black
+        } else{
+            memoTextView.text = placeHolder
+            memoTextView.textColor = .lightGray
+        }
         movieTitleLabel.text = book.title
         movieTitleLabel.textColor = .white
         movieTitleLabel.font = .boldSystemFont(ofSize: 20)
