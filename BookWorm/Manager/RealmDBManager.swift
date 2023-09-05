@@ -23,11 +23,16 @@ class RealmDBManager {
         }
     }
     
-    func readRealmBook() -> Results<RealmBook> {
+    func readLikeRealmBook()->Results<RealmBook>{
+        let likeBooks = realm.objects(RealmBook.self).filter("islikeCheck == true")
+        return likeBooks
+    }
+    
+    func readAllRealmBook() -> Results<RealmBook> {
        return realm.objects(RealmBook.self)
     }
     
-    func updateRealmBook(book: RealmBook ,newLike: Bool?,newMemo:String?) {
+    func updateRealmBook(book: RealmBook ,newLike: Bool? = nil,newMemo:String? = nil) {
         try! realm.write {
             if let like = newLike {
                 book.islikeCheck = like

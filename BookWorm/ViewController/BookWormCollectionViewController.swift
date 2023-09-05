@@ -19,15 +19,13 @@ class BookWormCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: BookWormCollectionViewCell.identifier)
         title = "최근검색"
-
-        
-        bookList = RealmDBManager.shared.readRealmBook()
+        bookList = RealmDBManager.shared.readAllRealmBook()
         setCollectionViewLayout()
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bookList = RealmDBManager.shared.readRealmBook()
+        bookList = RealmDBManager.shared.readAllRealmBook()
         collectionView.reloadData()
     }
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -36,17 +34,14 @@ class BookWormCollectionViewController: UICollectionViewController {
     }
     @objc func likeButtonTapped(_ sender: UIButton){
         print("button Tapped")
-//        let book = bookList[sender.tag]
-//        let islike = book.islikeCheck
-//        // false 일때 true로 바꾸고 테이블에 추가
-//        if !islike{
-//            book.islikeCheck.toggle()
-//            try! realm.write {
-//                realm.add(book)
-//                print("Realm Add Succeed")
-//            }
-//            collectionView.reloadData()
-//        }
+        let book = bookList[sender.tag]
+        let islike = book.islikeCheck
+        if islike{
+            RealmDBManager.shared.updateRealmBook(book: book, newLike: false)
+        } else{
+            RealmDBManager.shared.updateRealmBook(book: book, newLike: true)
+        }
+        collectionView.reloadData()
     }
 }
 

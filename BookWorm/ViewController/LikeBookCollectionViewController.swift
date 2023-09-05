@@ -14,9 +14,8 @@ class LikeBookCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setRegister()
         setCollectionViewLayout()
-        let realm = try! Realm()
         // Access all dogs in the realm
-        likeBooksData = realm.objects(RealmBook.self).sorted(byKeyPath: "releaseDate", ascending: true)
+        likeBooksData = RealmDBManager.shared.readLikeRealmBook()
         // Do any additional setup after loading the view.
     }
     
@@ -33,13 +32,12 @@ class LikeBookCollectionViewController: UICollectionViewController {
     
     @objc func likeButtonTapped(_ sender: UIButton){
         print("button Tapped")
-        
-        let likeBook = likeBooksData[sender.tag]
-        print(likeBook)
-        let realm = try! Realm()
-        try! realm.write {
-            realm.delete(likeBook)
-            print("Realm delete Succeed")
+        let book = likeBooksData[sender.tag]
+        let islike = book.islikeCheck
+        if islike{
+            RealmDBManager.shared.updateRealmBook(book: book, newLike: false)
+        } else{
+            RealmDBManager.shared.updateRealmBook(book: book, newLike: true)
         }
         collectionView.reloadData()
     }
