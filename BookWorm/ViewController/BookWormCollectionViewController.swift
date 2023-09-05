@@ -12,49 +12,41 @@ import Kingfisher
 import RealmSwift
 
 class BookWormCollectionViewController: UICollectionViewController {
+    var bookList: Results<RealmBook>!
     
-    let searchBar = UISearchBar()
-    
-    var isSearch = false
-    
-    var bookList: [RealmBook] = []
-//    var booktitleList: [String] = []
-    var page = 1
-    var isEnd = false // 현재 페이지가 마지막인지 점검하는 프로퍼티
-    let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: BookWormCollectionViewCell.identifier)
-        self.title = "고래밥님의 책장"
-        collectionView.prefetchDataSource = self
+        title = "최근검색"
+
         
-        APIManager.shard.callRequest(page: page) {
-            self.bookList = $0
-        }
+        bookList = RealmDBManager.shared.readRealmBook()
         setCollectionViewLayout()
-        setUpSearchBar()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bookList = RealmDBManager.shared.readRealmBook()
+        collectionView.reloadData()
     }
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
         guard let vc = storyboard?.instantiateViewController(identifier: SearchViewController.identifier) as? SearchViewController else { return }
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
     @objc func likeButtonTapped(_ sender: UIButton){
         print("button Tapped")
-        let book = bookList[sender.tag]
-        let islike = book.islikeCheck
-        // false 일때 true로 바꾸고 테이블에 추가
-        if !islike{
-            book.islikeCheck.toggle()
-            try! realm.write {
-                realm.add(book)
-                print("Realm Add Succeed")
-            }
-            collectionView.reloadData()
-        }
+//        let book = bookList[sender.tag]
+//        let islike = book.islikeCheck
+//        // false 일때 true로 바꾸고 테이블에 추가
+//        if !islike{
+//            book.islikeCheck.toggle()
+//            try! realm.write {
+//                realm.add(book)
+//                print("Realm Add Succeed")
+//            }
+//            collectionView.reloadData()
+//        }
     }
 }
 
@@ -84,9 +76,9 @@ extension BookWormCollectionViewController{
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookWormCollectionViewCell.identifier, for: indexPath) as! BookWormCollectionViewCell
         
-        var book = bookList[indexPath.row]
+        let book = bookList[indexPath.row]
         cell.configreCollectionCell(book: book)
-        
+        cell.backgroundColor = .systemBlue
         cell.likeButton.tag = indexPath.row
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         
@@ -101,60 +93,5 @@ extension BookWormCollectionViewController{
     }
 }
 
-//MARK: - UICollectionViewDataSourcePrefetching
-extension BookWormCollectionViewController: UICollectionViewDataSourcePrefetching{
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        
-        for indexPath in indexPaths{
-            if bookList.count - 1 == indexPath.row && page < 15 && !isEnd {
-                page += 1
-//                callRequest(text: searchBar.text!, page: page)
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        print("취소구현 알아보기 \(indexPaths)")
-    }
-    
-    
 
-}
-
-
-
-// UISearchBarDelegate
-extension BookWormCollectionViewController: UISearchBarDelegate{
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        page = 1
-        bookList.removeAll()
-//        booktitleList.removeAll()
-        guard let text = searchBar.text, !text.isEmpty else {  return }
-        searchBar.resignFirstResponder()
-//        callRequest(text: text, page: page)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        page = 1
-        isSearch = false
-        searchBar.text = ""
-        bookList.removeAll()
-//        callRequest(page: page)
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        page = 1
-        bookList.removeAll()
-//        callRequest(text: searchText, page: page)
-
-    }
-    
-    func setUpSearchBar(){
-        searchBar.delegate = self
-        searchBar.placeholder = "검색어를 입력해주세요"
-        searchBar.showsCancelButton = true
-        navigationItem.titleView = searchBar
-    }
-}
 

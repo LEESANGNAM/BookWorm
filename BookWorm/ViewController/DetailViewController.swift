@@ -7,10 +7,11 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class DetailViewController: UIViewController {
     
-    var book: Book?
+    var book: RealmBook!
     @IBOutlet weak var movieTitleLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -35,7 +36,7 @@ class DetailViewController: UIViewController {
         memoTextView.textColor = .lightGray
         
         title = ""
-        setUpUI(book: book!)
+        setUpUI(book: book)
         if let _ = presentingViewController{ // presentingViewController 라는게 있어서  test 해보니 push할땐 값이 넘어오지 않는다.
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back))
         }
@@ -43,7 +44,7 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setUpUI(book: Book){
+    func setUpUI(book: RealmBook){
         movieTitleLabel.text = book.title
         movieTitleLabel.textColor = .white
         movieTitleLabel.font = .boldSystemFont(ofSize: 20)

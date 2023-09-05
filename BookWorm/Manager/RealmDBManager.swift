@@ -14,6 +14,7 @@ class RealmDBManager {
     let realm: Realm
     private init() {
         realm = try! Realm()
+        print(realm.configuration.fileURL)
     }
     
     func createRealmBook(book: RealmBook){

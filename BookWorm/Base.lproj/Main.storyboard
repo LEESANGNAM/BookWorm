@@ -93,17 +93,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="검색화면" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wo-bp-nJ4">
-                                <rect key="frame" x="108" y="393" width="59" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="78L-17-jC2">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Tb-Fj-910">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="q8g-lo-rsH" customClass="BookWormCollectionViewCell" customModule="BookWorm" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rEL-Tl-CJZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rfn-CQ-aNu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rfn-CQ-aNu" firstAttribute="trailing" secondItem="78L-17-jC2" secondAttribute="trailing" id="AXI-lD-Oew"/>
+                            <constraint firstItem="78L-17-jC2" firstAttribute="leading" secondItem="Rfn-CQ-aNu" secondAttribute="leading" id="XXx-1N-gCR"/>
+                            <constraint firstItem="Rfn-CQ-aNu" firstAttribute="bottom" secondItem="78L-17-jC2" secondAttribute="bottom" id="fss-CX-YBc"/>
+                            <constraint firstItem="78L-17-jC2" firstAttribute="top" secondItem="Rfn-CQ-aNu" secondAttribute="top" id="yBd-Rn-O60"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchCollectionView" destination="78L-17-jC2" id="ZuE-ac-v3R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrI-cD-vzl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -354,11 +376,11 @@
             </objects>
             <point key="canvasLocation" x="1916.7938931297708" y="756.33802816901414"/>
         </scene>
-        <!--메인-->
+        <!--최근검색-->
         <scene sceneID="6bM-7H-G6J">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bFk-uI-uIG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="메인" image="star.fill" catalog="system" id="LkN-cf-4IP"/>
+                    <tabBarItem key="tabBarItem" title="최근검색" image="book.fill" catalog="system" id="LkN-cf-4IP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cbd-Me-T98">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -375,10 +397,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="eye.fill" catalog="system" width="128" height="80"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
