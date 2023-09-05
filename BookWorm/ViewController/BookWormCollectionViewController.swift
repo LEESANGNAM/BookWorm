@@ -25,33 +25,37 @@ class BookWormCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "BookWormCollectionViewCell")
+        collectionView.register(nib, forCellWithReuseIdentifier: BookWormCollectionViewCell.identifier)
         self.title = "고래밥님의 책장"
         collectionView.prefetchDataSource = self
         
-        callRequest(page: page)
+        APIManager.shard.callRequest(page: page) {
+            print("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ여기가결과데이터ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ")
+            print($0)
+        }
+//        callRequest(page: page)
         setCollectionViewLayout()
         setUpSearchBar()
         
     }
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
-        guard let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as? SearchViewController else { return }
+        guard let vc = storyboard?.instantiateViewController(identifier: SearchViewController.identifier) as? SearchViewController else { return }
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
     }
     @objc func likeButtonTapped(_ sender: UIButton){
-        print("button Tapped")
-        bookList[sender.tag].like.toggle()
-        let book = bookList[sender.tag]
-        let likeBook = LikeBook(book: book)
-        print(likeBook)
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(likeBook)
-            print("Realm Add Succeed")
-        }
-        collectionView.reloadData()
+//        print("button Tapped")
+//        bookList[sender.tag].like.toggle()
+//        let book = bookList[sender.tag]
+//        let likeBook = LikeBook(book: book)
+//        print(likeBook)
+//        let realm = try! Realm()
+//        try! realm.write {
+//            realm.add(likeBook)
+//            print("Realm Add Succeed")
+//        }
+//        collectionView.reloadData()
     }
 }
 
@@ -91,7 +95,7 @@ extension BookWormCollectionViewController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
         vc.book = bookList[indexPath.row]
         vc.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(vc, animated: true)
@@ -105,7 +109,7 @@ extension BookWormCollectionViewController: UICollectionViewDataSourcePrefetchin
         for indexPath in indexPaths{
             if bookList.count - 1 == indexPath.row && page < 15 && !isEnd {
                 page += 1
-                callRequest(text: searchBar.text!, page: page)
+//                callRequest(text: searchBar.text!, page: page)
             }
         }
     }
@@ -129,7 +133,7 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
 //        booktitleList.removeAll()
         guard let text = searchBar.text, !text.isEmpty else {  return }
         searchBar.resignFirstResponder()
-        callRequest(text: text, page: page)
+//        callRequest(text: text, page: page)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -137,13 +141,13 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
         isSearch = false
         searchBar.text = ""
         bookList.removeAll()
-        callRequest(page: page)
+//        callRequest(page: page)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         page = 1
         bookList.removeAll()
-        callRequest(text: searchText, page: page)
+//        callRequest(text: searchText, page: page)
 
     }
     
@@ -155,54 +159,3 @@ extension BookWormCollectionViewController: UISearchBarDelegate{
     }
 }
 
-// MARK: - json
-extension BookWormCollectionViewController {
-    
-    func callRequest(text: String = "클린코드",page: Int){
-        
-        let text = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)&size=30&page=\(page)"
-        let header: HTTPHeaders = ["Authorization":APIKey.KakaoKey]
-        AF.request(url, method: .get,headers: header).validate().responseJSON { response in
-            
-            switch response.result {
-            case .success(let value):
-                if response.response?.statusCode == 200 {
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    
-                    for item in json["documents"].arrayValue{
-                        let title = item["title"].stringValue
-                        let authors = item["authors"][0].stringValue
-                        let overview = item["contents"].stringValue
-                        let url = item["thumbnail"].stringValue
-                        let price = item["price"].intValue
-                        let date = item["datetime"].stringValue
-                        
-                        guard let date = self.dateFormatString(dateString: date, beforeFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", afterFormat: "yyyy-MM-dd") else { return }
-                        
-                        let book = Book(title: title, authors: authors as! String, releaseDate: date, price: price, overview: overview, urlString: url, like: false, color: .randomColor())
-//                        self.booktitleList.append(title)
-                        self.bookList.append(book)
-                    }
-//                    print(self.booktitleList.count)
-                    self.collectionView.reloadData()
-                }else{
-                    print("오류")
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func dateFormatString(dateString: String, beforeFormat: String, afterFormat: String) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = beforeFormat
-        if let date = dateFormatter.date(from: dateString){
-            dateFormatter.dateFormat = afterFormat
-            return dateFormatter.string(from: date)
-        }
-        return nil
-    }
-}

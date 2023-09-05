@@ -10,8 +10,6 @@ import Kingfisher
 
 class BookWormCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "BookWormCollectionViewCell"
-
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var rateLabel: UILabel!
@@ -40,7 +38,7 @@ class BookWormCollectionViewCell: UICollectionViewCell {
         }
 
     }
-    func configreCollectionCell(book: LikeBook){
+    func configreCollectionCell(book: RealmBook){
         
         self.layer.cornerRadius = 20
         
@@ -52,7 +50,7 @@ class BookWormCollectionViewCell: UICollectionViewCell {
         likeButton.tintColor = .white
         likeButton.setTitle("", for: .normal)
 
-        if book.like {
+        if book.islikeCheck {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         }else{
             likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)

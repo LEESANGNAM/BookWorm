@@ -9,14 +9,14 @@ import UIKit
 import RealmSwift
 
 class LikeBookCollectionViewController: UICollectionViewController {
-    var likeBooksData: Results<LikeBook>!
+    var likeBooksData: Results<RealmBook>!
     override func viewDidLoad() {
         super.viewDidLoad()
         setRegister()
         setCollectionViewLayout()
         let realm = try! Realm()
         // Access all dogs in the realm
-        likeBooksData = realm.objects(LikeBook.self).sorted(byKeyPath: "releaseDate", ascending: true)
+        likeBooksData = realm.objects(RealmBook.self).sorted(byKeyPath: "releaseDate", ascending: true)
         // Do any additional setup after loading the view.
     }
     
