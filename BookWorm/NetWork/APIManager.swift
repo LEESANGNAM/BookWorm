@@ -27,13 +27,14 @@ class APIManager {
                     var bookList: [RealmBook] = []
                     for item in json["documents"].arrayValue{
                         let title = item["title"].stringValue
+                        let isbn = item["isbn"].stringValue
                         let authors = item["authors"][0].stringValue
                         let overview = item["contents"].stringValue
                         let url = item["thumbnail"].stringValue
                         let price = item["price"].intValue
                         let date = item["datetime"].stringValue
                         
-                        let book = RealmBook(title: title, authors: authors as! String, releaseDate: date.changeFormatDateString(), price: price, overview: overview, urlString: url)
+                        let book = RealmBook(isbn: isbn, title: title, authors: authors , releaseDate: date.changeFormatDateString(), price: price, overview: overview, urlString: url)
                         bookList.append(book)
                     }
                     completionHandler(bookList)

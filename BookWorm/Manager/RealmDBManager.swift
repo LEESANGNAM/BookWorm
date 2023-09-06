@@ -14,6 +14,12 @@ class RealmDBManager {
     let realm: Realm
     private init() {
         realm = try! Realm()
+        do{
+            let version = try schemaVersionAtURL(realm.configuration.fileURL!)
+            print("Schema Version: ",version)
+        }catch{
+            print(error)
+        }
         print(realm.configuration.fileURL)
     }
     
