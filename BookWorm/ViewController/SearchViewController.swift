@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchCollectionView: UICollectionView!
@@ -59,16 +59,20 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let book = bookList[indexPath.row]
         cell.configreCollectionCell(book: book)
-
         cell.likeButton.tag = indexPath.row
+        cell.posterImageView.kf.setImage(with: book.url)
 //        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         cell.backgroundColor = .black
-        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = bookList[indexPath.row]
         RealmDBManager.shared.createRealmBook(book: book)
+        if let cell = collectionView.cellForItem(at: indexPath) as? BookWormCollectionViewCell{
+            if let image = cell.posterImageView.image{
+                ImageFileManager.shared.saveImageToDocument(fileName: "\(book._id).jpg", image: image)
+            }
+        }
         
     }
 

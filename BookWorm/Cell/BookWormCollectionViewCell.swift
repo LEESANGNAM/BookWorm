@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class BookWormCollectionViewCell: UICollectionViewCell {
     
@@ -44,7 +43,8 @@ class BookWormCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = book.title
         titleLabel.textColor = .white
-        posterImageView.kf.setImage(with: book.url)
+        posterImageView.image = ImageFileManager.shared.loadImageFromDocument(fileName: "\(book._id).jpg")
+//        posterImageView.kf.setImage(with: book.url)
         rateLabel.text = "\(book.price)원"
         rateLabel.textColor = .white
         likeButton.tintColor = .white

@@ -91,6 +91,7 @@ extension BookWormCollectionViewController{
                 vc.modalTransitionStyle = .coverVertical
                 self.navigationController?.pushViewController(vc, animated: true)
             case .delete:
+                ImageFileManager.shared.removeImageFromDocument(fileName: "\(book._id).jpg")
                 RealmDBManager.shared.deleteRealmBook(book: book)
                 self.collectionView.reloadData()
             case .cancle:  self.dismiss(animated: true)
