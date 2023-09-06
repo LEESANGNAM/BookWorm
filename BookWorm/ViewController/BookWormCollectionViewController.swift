@@ -37,9 +37,9 @@ class BookWormCollectionViewController: UICollectionViewController {
         let book = bookList[sender.tag]
         let islike = book.islikeCheck
         if islike{
-            RealmDBManager.shared.updateRealmBook(book: book, newLike: false)
+            RealmDBManager.shared.updateRealmBook(book: book, newLike: false,newMemo: book.memo)
         } else{
-            RealmDBManager.shared.updateRealmBook(book: book, newLike: true)
+            RealmDBManager.shared.updateRealmBook(book: book, newLike: true,newMemo: book.memo)
         }
         collectionView.reloadData()
     }
