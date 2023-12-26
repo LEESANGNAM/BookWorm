@@ -61,19 +61,19 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.configreCollectionCell(book: book)
         cell.likeButton.tag = indexPath.row
         cell.posterImageView.kf.setImage(with: book.url)
-//        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         cell.backgroundColor = .black
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let book = bookList[indexPath.row]
-        RealmDBManager.shared.createRealmBook(book: book)
-        if let cell = collectionView.cellForItem(at: indexPath) as? BookWormCollectionViewCell{
-            if let image = cell.posterImageView.image{
-                ImageFileManager.shared.saveImageToDocument(fileName: "\(book._id).jpg", image: image)
+        showAlert(text: "책장에 추가하시겠습니까? ", addButtonText: "추가") {
+            let book = self.bookList[indexPath.row]
+            RealmDBManager.shared.createRealmBook(book: book)
+            if let cell = collectionView.cellForItem(at: indexPath) as? BookWormCollectionViewCell{
+                if let image = cell.posterImageView.image{
+                    ImageFileManager.shared.saveImageToDocument(fileName: "\(book.isbn).jpg", image: image)
+                }
             }
         }
-        
     }
 
 }

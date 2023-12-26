@@ -9,8 +9,8 @@ import Foundation
 import RealmSwift
 
 class RealmBook: Object {
-    @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var isbn: String
+//    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted(primaryKey: true) var isbn: String
     @Persisted var title: String //책제목
     @Persisted var authors: String // 저자
     @Persisted var releaseDate: String //
@@ -20,8 +20,8 @@ class RealmBook: Object {
     @Persisted var islikeCheck: Bool
     @Persisted var memo:String?
     
-    var url: URL{
-        return URL(string: urlString) ?? URL(string: "www.naver.com")!
+    var url: URL?{
+        return URL(string: urlString)
     }
     
     convenience init(isbn:String, title: String, authors: String, releaseDate: String, price: Int, overview: String, urlString: String, islikeCheck: Bool = false, memo: String? = nil) {

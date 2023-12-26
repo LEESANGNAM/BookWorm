@@ -16,6 +16,7 @@ class LikeBookCollectionViewController: UICollectionViewController {
         setCollectionViewLayout()
         // Access all dogs in the realm
         likeBooksData = RealmDBManager.shared.readLikeRealmBook()
+        title = "내가 좋아하는 책"
         // Do any additional setup after loading the view.
     }
     
@@ -75,7 +76,7 @@ extension LikeBookCollectionViewController{
         cell.configreCollectionCell(book: likeBook)
         cell.likeButton.tag = indexPath.row
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        cell.backgroundColor = .blue
+        cell.backgroundColor = .systemBrown
         
         // Configure the cell
         return cell

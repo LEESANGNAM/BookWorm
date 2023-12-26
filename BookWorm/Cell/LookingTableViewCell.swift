@@ -26,7 +26,7 @@ class LookingTableViewCell: UITableViewCell {
     }
 
     
-    func setUpTableViewCell(book: Book){
+    func setUpTableViewCell(book: RealmBook){
         mainTitleLabel.text = book.title
         dateLabel.text = book.authors
         timeRateLabel.text = "\(book.price)원"

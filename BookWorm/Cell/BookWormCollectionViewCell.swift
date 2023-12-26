@@ -43,8 +43,13 @@ class BookWormCollectionViewCell: UICollectionViewCell {
         
         titleLabel.text = book.title
         titleLabel.textColor = .white
-        posterImageView.image = ImageFileManager.shared.loadImageFromDocument(fileName: "\(book._id).jpg")
-//        posterImageView.kf.setImage(with: book.url)
+        if let image = ImageFileManager.shared.loadImageFromDocument(fileName: "\(book.isbn).jpg"){
+            print("파일에서 넣음")
+            posterImageView.image = image
+        } else {
+            print("이걸로넣음")
+            posterImageView.kf.setImage(with: book.url)
+        }
         rateLabel.text = "\(book.price)원"
         rateLabel.textColor = .white
         likeButton.tintColor = .white

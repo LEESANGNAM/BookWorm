@@ -18,7 +18,7 @@ class BookWormCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         let nib = UINib(nibName: BookWormCollectionViewCell.identifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: BookWormCollectionViewCell.identifier)
-        title = "최근검색"
+        title = "나의 책방"
         bookList = RealmDBManager.shared.readAllRealmBook()
         setCollectionViewLayout()
         
@@ -28,10 +28,7 @@ class BookWormCollectionViewController: UICollectionViewController {
         bookList = RealmDBManager.shared.readAllRealmBook()
         collectionView.reloadData()
     }
-    @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
-        guard let vc = storyboard?.instantiateViewController(identifier: SearchViewController.identifier) as? SearchViewController else { return }
-        navigationController?.pushViewController(vc, animated: true)
-    }
+    
     @objc func likeButtonTapped(_ sender: UIButton){
         print("button Tapped")
         let book = bookList[sender.tag]
@@ -82,7 +79,7 @@ extension BookWormCollectionViewController{
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = bookList[indexPath.row]
-        showActionSheet(text: "골라주세요"){ actionType in
+        showActionSheet(text: ""){ actionType in
             switch actionType{
             case .update:
                 let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -91,7 +88,7 @@ extension BookWormCollectionViewController{
                 vc.modalTransitionStyle = .coverVertical
                 self.navigationController?.pushViewController(vc, animated: true)
             case .delete:
-                ImageFileManager.shared.removeImageFromDocument(fileName: "\(book._id).jpg")
+                ImageFileManager.shared.removeImageFromDocument(fileName: "\(book.isbn).jpg")
                 RealmDBManager.shared.deleteRealmBook(book: book)
                 self.collectionView.reloadData()
             case .cancle:  self.dismiss(animated: true)

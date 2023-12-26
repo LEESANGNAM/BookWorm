@@ -12,40 +12,51 @@ import SwiftyJSON
 
 class LookingViewController: UIViewController{
     
-    var bookCollectionList:[Book] = []
-    var bookTableList:[Book] = []
+    var bookCollectionList:[RealmBook] = []
+    var bookTableList:[RealmBook] = []
     
     var tablePage = 1
     var collectionPage = 1
     
     var isEnd = false
-
+    
     @IBOutlet weak var lookingCollectionView: UICollectionView!
     
     @IBOutlet weak var lookingTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpJsonWithPreFetching()
         configureTableViewLayout()
         configureCollectionViewLayout()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        APIManager.shard.callRequest(text: "클린코드", page: collectionPage) { data in
+            self.bookCollectionList += data
+            self.lookingCollectionView.reloadData()
+        }
+        APIManager.shard.callRequest(text: "ios", page: tablePage) { data in
+            self.bookTableList += data
+            self.lookingTableView.reloadData()
+        }
         
     }
     
-    func showFullScreenPresent(book: Book){
-//        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
-//        
-//        vc.book = book
-//    
-//        let nav = UINavigationController(rootViewController: vc)
-//        nav.modalPresentationStyle = .fullScreen
-//        present(nav, animated: true)
+    @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
+        guard let vc = storyboard?.instantiateViewController(identifier: SearchViewController.identifier) as? SearchViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
     }
-
+    func showFullScreenPresent(book: RealmBook){
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        
+        vc.book = book
+        
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
+    
 }
 
 extension LookingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -63,7 +74,14 @@ extension LookingViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = bookCollectionList[indexPath.row]
-        showFullScreenPresent(book: book)
+        showAlert(text: "책장에 추가하시겠습니까? ", addButtonText: "추가") {
+            RealmDBManager.shared.createRealmBook(book: book)
+            if let cell = collectionView.cellForItem(at: indexPath) as? BookWormCollectionViewCell{
+                if let image = cell.posterImageView.image{
+                    ImageFileManager.shared.saveImageToDocument(fileName: "\(book.isbn).jpg", image: image)
+                }
+            }
+        }
     }
     
     
@@ -111,7 +129,14 @@ extension LookingViewController: UITableViewDelegate,UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let book = bookTableList[indexPath.row]
-        showFullScreenPresent(book: book)
+        showAlert(text: "책장에 추가하시겠습니까? ", addButtonText: "추가") {
+            RealmDBManager.shared.createRealmBook(book: book)
+            if let cell = tableView.cellForRow(at: indexPath) as? LookingTableViewCell{
+                if let image = cell.posterImageView.image{
+                    ImageFileManager.shared.saveImageToDocument(fileName: "\(book.isbn).jpg", image: image)
+                }
+            }
+        }
         
     }
     
@@ -133,7 +158,10 @@ extension LookingViewController: UITableViewDataSourcePrefetching, UICollectionV
         for indexPath in indexPaths{
             if bookTableList.count - 1 == indexPath.row && tablePage < 15 && !isEnd {
                 tablePage += 1
-                callRequest(text: "ios",page: tablePage,target: lookingTableView)
+                APIManager.shard.callRequest(text: "ios", page: tablePage) { data in
+                    self.bookTableList += data
+                    self.lookingTableView.reloadData()
+                }
             }
         }
     }
@@ -142,74 +170,25 @@ extension LookingViewController: UITableViewDataSourcePrefetching, UICollectionV
         for indexPath in indexPaths{
             if bookCollectionList.count - 1 == indexPath.row && collectionPage < 15 && !isEnd {
                 collectionPage += 1
-                callRequest(text: "python",page: collectionPage,target: lookingCollectionView)
-            }
-        }
-    }
-    
-    func setUpJsonWithPreFetching(){
-        lookingTableView.prefetchDataSource = self
-        lookingCollectionView.prefetchDataSource = self
-        
-        callRequest(text: "python",page: collectionPage,target: lookingCollectionView)
-        callRequest(text: "ios",page: tablePage,target: lookingTableView)
-    }
-    
-    
-    func callRequest(text: String = "클린코드",page: Int = 1, target: Any){
-        
-        let text = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)&size=30&page=\(page)"
-        let header: HTTPHeaders = ["Authorization":APIKey.KakaoKey]
-        AF.request(url, method: .get,headers: header).validate().responseJSON { response in
-            
-            switch response.result {
-            case .success(let value):
-                if response.response?.statusCode == 200 {
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    
-                    for item in json["documents"].arrayValue{
-                        let title = item["title"].stringValue
-                        let authors = item["authors"][0].stringValue
-                        let overview = item["contents"].stringValue
-                        let url = item["thumbnail"].stringValue
-                        let price = item["price"].intValue
-                        let date = item["datetime"].stringValue
-                        
-                        guard let date = self.dateFormatString(dateString: date, beforeFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", afterFormat: "yyyy-MM-dd") else { return }
-                        
-                        let book = Book(title: title, authors: authors as! String, releaseDate: date, price: price, overview: overview, urlString: url, like: false, color: .randomColor())
-                        if let target = target as? UICollectionView{
-                            self.bookCollectionList.append(book)
-                        }else{
-                            self.bookTableList.append(book)
-                        }
-                        
-                    }
+                APIManager.shard.callRequest(text: "클린코드", page: collectionPage) { data in
+                    self.bookCollectionList += data
                     self.lookingCollectionView.reloadData()
-                    self.lookingTableView.reloadData()
-                }else{
-                    print("오류")
                 }
-            case .failure(let error):
-                print(error)
             }
         }
     }
-    
-    func dateFormatString(dateString: String, beforeFormat: String, afterFormat: String) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = beforeFormat
-        if let date = dateFormatter.date(from: dateString){
-            dateFormatter.dateFormat = afterFormat
-            return dateFormatter.string(from: date)
-        }
-        return nil
-    }
-    
-    
-    
 }
+
+
+func dateFormatString(dateString: String, beforeFormat: String, afterFormat: String) -> String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = beforeFormat
+    if let date = dateFormatter.date(from: dateString){
+        dateFormatter.dateFormat = afterFormat
+        return dateFormatter.string(from: date)
+    }
+    return nil
+}
+
 
 

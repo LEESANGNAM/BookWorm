@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tjT-vb-pq8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tjT-vb-pq8">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -38,13 +39,7 @@
                             <outlet property="delegate" destination="Mjm-1K-Bop" id="iah-x2-PJK"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="7IW-iO-FHO">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="Xpi-nw-vwr">
-                            <connections>
-                                <action selector="searchBarButtonTapped:" destination="Mjm-1K-Bop" id="bsh-K3-zfB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="7IW-iO-FHO"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDx-tK-Pnd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,10 +180,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LookingTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LookingTableViewCell" id="VRV-Qc-3lD" customClass="LookingTableViewCell" customModule="BookWorm" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="233" width="393" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="233" width="393" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VRV-Qc-3lD" id="4uH-21-36e">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -204,7 +199,13 @@
                             <constraint firstItem="CwM-oH-fjq" firstAttribute="leading" secondItem="EpI-ql-8Tm" secondAttribute="leading" id="yMX-UZ-Y8b"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="둘러보기" id="ez2-cg-zs4"/>
+                    <navigationItem key="navigationItem" title="둘러보기" id="ez2-cg-zs4">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="Xpi-nw-vwr">
+                            <connections>
+                                <action selector="searchBarButtonTapped:" destination="p5E-4H-PNi" id="kHJ-Rl-Fft"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="lookingCollectionView" destination="vWp-7y-ECE" id="Z1r-SN-e7k"/>
                         <outlet property="lookingTableView" destination="CwM-oH-fjq" id="JLh-4v-eac"/>
@@ -348,14 +349,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="bFk-uI-uIG" kind="relationship" relationship="viewControllers" id="2KT-QJ-LMh"/>
                         <segue destination="zOG-Nt-Gvq" kind="relationship" relationship="viewControllers" id="KKi-Sj-GG4"/>
+                        <segue destination="bFk-uI-uIG" kind="relationship" relationship="viewControllers" id="2KT-QJ-LMh"/>
                         <segue destination="ugW-Q9-TWw" kind="relationship" relationship="viewControllers" id="wAu-Vv-uMC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UP-J6-hQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="737" y="31"/>
+            <point key="canvasLocation" x="227" y="182"/>
         </scene>
         <!--둘러보기-->
         <scene sceneID="YyO-k4-ntZ">
@@ -376,11 +377,11 @@
             </objects>
             <point key="canvasLocation" x="1916.7938931297708" y="756.33802816901414"/>
         </scene>
-        <!--최근검색-->
+        <!--나의 책장-->
         <scene sceneID="6bM-7H-G6J">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bFk-uI-uIG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="최근검색" image="book.fill" catalog="system" id="LkN-cf-4IP"/>
+                    <tabBarItem key="tabBarItem" title="나의 책장" image="book.fill" catalog="system" id="LkN-cf-4IP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cbd-Me-T98">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -412,7 +413,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eic-ou-tpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2823.6641221374043" y="-630.28169014084506"/>
+            <point key="canvasLocation" x="1882" y="-703"/>
         </scene>
     </scenes>
     <resources>
@@ -421,7 +422,7 @@
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

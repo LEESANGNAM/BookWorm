@@ -29,16 +29,16 @@ class ImageFileManager{
     
     
     //도큐먼트 폴더에서 이미지를 가져오는 메서드
-    func loadImageFromDocument(fileName: String) -> UIImage{
+    func loadImageFromDocument(fileName: String) -> UIImage?{
         //1. 도큐먼트 경로 찾기
-        guard let documnetDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return UIImage(systemName: "doc.richtext.fill")! }
+        guard let documnetDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         // 2. 저장할 경로 설정( 세부경로, 이미지가 저장되어 있는 위치)
         let fileURL = documnetDirectory.appendingPathComponent(fileName)
         
         if FileManager.default.fileExists(atPath: fileURL.path){
-            return UIImage(contentsOfFile: fileURL.path)!
+            return UIImage(contentsOfFile: fileURL.path)
         } else {
-            return UIImage(systemName: "doc.richtext.fill")!
+            return nil
         }
     }
     

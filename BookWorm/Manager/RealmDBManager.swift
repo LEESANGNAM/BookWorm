@@ -24,9 +24,11 @@ class RealmDBManager {
     }
     
     func createRealmBook(book: RealmBook){
-        try! realm.write {
-            realm.add(book)
-        }
+        if realm.object(ofType: RealmBook.self, forPrimaryKey: book.isbn) == nil {
+                try! realm.write {
+                    realm.add(book)
+                }
+            }
     }
     
     func readLikeRealmBook()->Results<RealmBook>{

@@ -23,7 +23,7 @@ class APIManager {
             case .success(let value):
                 if response.response?.statusCode == 200 {
                     let json = JSON(value)
-                    print("JSON: \(json)")
+//                    print("JSON: \(json)")
                     var bookList: [RealmBook] = []
                     for item in json["documents"].arrayValue{
                         let title = item["title"].stringValue
