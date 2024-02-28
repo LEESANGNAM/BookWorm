@@ -5,19 +5,19 @@
 ### 실행화면
 <p>
 <!-- [둘러보기메인] -->
-<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/8d3293eb-cfde-48a9-9d7c-5060648d9f13" width="22%"/> 
+<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/8d3293eb-cfde-48a9-9d7c-5060648d9f13" width="30%"/> 
 <!-- [책장에추가] -->
-<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/840ef527-b19b-47a9-b930-4d9defb41ef0" width="22%"/>  
+<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/840ef527-b19b-47a9-b930-4d9defb41ef0" width="30%"/>  
 <!-- [책검색] -->
-<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/cb9c6956-52be-4d91-832f-e85361bc78bd" width="22%"/> 
+<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/cb9c6956-52be-4d91-832f-e85361bc78bd" width="30%"/> 
 </p>
  <p>
 <!-- [책상세정보] -->
-<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/367ee7ed-88c9-4df4-8265-5550f319c813" width="22%"/> 
+<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/367ee7ed-88c9-4df4-8265-5550f319c813" width="30%"/> 
 <!-- [나의책방] -->
-<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/b6eae85a-4b83-4653-a5d2-c5ff545faea2" width="22%"/>  
+<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/b6eae85a-4b83-4653-a5d2-c5ff545faea2" width="30%"/>  
 <!-- [나의좋아요] -->
-<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/3058ee2a-5948-488d-b6f1-845408f19633" width="22%"/>  
+<img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/3058ee2a-5948-488d-b6f1-845408f19633" width="30%"/>  
 </p>
 
 ### 간단소개
