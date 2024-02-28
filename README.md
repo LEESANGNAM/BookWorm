@@ -10,7 +10,8 @@
 <img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/840ef527-b19b-47a9-b930-4d9defb41ef0" width="22%"/>  
 <!-- [책검색] -->
 <img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/cb9c6956-52be-4d91-832f-e85361bc78bd" width="22%"/> 
- 
+</p>
+ <p>
 <!-- [책상세정보] -->
 <img src = "https://github.com/LEESANGNAM/BookWorm/assets/61412496/367ee7ed-88c9-4df4-8265-5550f319c813" width="22%"/> 
 <!-- [나의책방] -->
